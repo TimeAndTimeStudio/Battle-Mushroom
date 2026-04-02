@@ -19,5 +19,7 @@
   "hp" : 5,
   "attack" : 1,
   "movespeed" : 100,
-  "speedattackmove" : 0.1
+  "speedattackmove" : 0.1,
+
+  "swordpng" : 21
 }
