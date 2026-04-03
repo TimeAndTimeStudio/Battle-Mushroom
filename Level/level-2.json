@@ -1,1 +1,14 @@
+{
+  "worldsize" : 15,
+  "groundpng" : 2,
+  "cloudpng" : 1,
+  "grassbig" : 4,
+  "mountain" : 33,
+  "towerplayer" : 3,
+  "towermob" : 5,
 
+  "bird1" : 7,
+  "bird2" : 8,
+  "bird3" : 9,
+  "bird4" : 10
+}
