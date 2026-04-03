@@ -1,1 +1,26 @@
+{
+  "mobwv" : 5,
+  "mobav" : 5,
+  
+  "moba0" : 16,
+  "moba1" : 17,
+  "moba2" : 18,
+  "moba3" : 19,
+  "moba4" : 20,
 
+  "mobw0" : 11,
+  "mobw1" : 12,
+  "mobw2" : 13,
+  "mobw3" : 14,
+  "mobw4" : 15,
+
+  "swordposx" : 9,
+  "swordposy" : 14,
+
+  "hp" : 5,
+  "attack" : 1,
+  "movespeed" : 100,
+  "speedattackmove" : 0.1,
+
+  "swordpng" : 21
+}
