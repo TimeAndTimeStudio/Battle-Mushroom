@@ -22,5 +22,6 @@
   "speedattackmove" : 0.1,
 
   "swordpng" : 21,
-  "type" : "a"
+  "type" : "a",
+  "s" : 1
 }
