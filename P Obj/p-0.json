@@ -23,5 +23,6 @@
 
   "swordpng" : 21,
   "type" : "a",
-  "s" : 1
+  "s" : 1,
+  "sfx" : "p-0.wav"
 }
