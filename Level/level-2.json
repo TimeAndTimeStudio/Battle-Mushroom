@@ -1,14 +1,14 @@
 {
   "worldsize" : 15,
-  "groundpng" : 2,
-  "cloudpng" : 1,
-  "grassbig" : 4,
-  "mountain" : 33,
-  "towerplayer" : 3,
-  "towermob" : 5,
+  "groundpng" : "grass.png",
+  "cloudpng" : "cloud.png",
+  "grassbig" : "grass%20big.png",
+  "mountain" : "mountain.png",
+  "towerplayer" : "home.png",
+  "towermob" : "Mushroom.png",
 
-  "bird1" : 7,
-  "bird2" : 8,
-  "bird3" : 9,
-  "bird4" : 10
+  "bird1" : "bird0000.png",
+  "bird2" : "bird0001.png",
+  "bird3" : "bird0002.png",
+  "bird4" : "bird0003.png"
 }
