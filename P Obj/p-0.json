@@ -23,8 +23,8 @@
   "speedattackmove" : 0.1,
 
   "swordpng" : "sword.png",
-  "time" : "5",
-  "coin" : "50",
+  "time" : 5,
+  "coin" : 50,
   "type" : "a",
   "s" : 1,
   "sfx" : "p-0.wav"
