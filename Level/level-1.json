@@ -13,6 +13,8 @@
   "bird4" : "bird0003.png",
   "music" : "back1.mp3",
 
+  "coin" : 500,
+
   "gameint" : 2,
   "time0" : 2,
   "mmodel0" : 0,
