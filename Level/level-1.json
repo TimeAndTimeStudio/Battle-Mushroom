@@ -14,6 +14,7 @@
   "music" : "back1.mp3",
 
   "coin" : 500,
+  "hp" : 100,
 
   "gameint" : 2,
   "time0" : 2,
