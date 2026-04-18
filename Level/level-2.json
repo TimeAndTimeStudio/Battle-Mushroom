@@ -11,5 +11,13 @@
   "bird2" : "bird0001.png",
   "bird3" : "bird0002.png",
   "bird4" : "bird0003.png",
-  "music" : "back1.mp3"
+  "music" : "back1.mp3",
+
+  "coin" : 500,
+
+  "gameint" : 2,
+  "time0" : 2,
+  "mmodel0" : 0,
+  "time1" : 3,
+  "mmodel1" : 0
 }
