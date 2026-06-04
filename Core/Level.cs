@@ -22,6 +22,8 @@ public class Level : Scene
 
     private float fontheight;
 
+    public Rectangle ui_button_close_pos;
+
     private Texture2D close_icon;
     private Texture2D lock_icon;
 
@@ -55,7 +57,7 @@ public class Level : Scene
         width = graphicsDevice.Viewport.Width;
         height = graphicsDevice.Viewport.Height;
 
-        Data.ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
+        ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
 
         close_icon = _content.Load<Texture2D>("Content/Icon/close_icon");
         lock_icon = _content.Load<Texture2D>("Content/Icon/lock_icon");
@@ -81,11 +83,13 @@ public class Level : Scene
                         if (Data.level_button_pos[i].Contains(t.Position))
                         {
                             Data.sceneloaduser(new Level_Game_Main(i + 1));
+                            break;
                         }
                     }
-                    if (Data.ui_button_close_pos.Contains(t.Position))
+                    if (ui_button_close_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Game());
+                        break;
                     }
                     touchx = t.Position.X;
                     oldtouchx = touchx;
@@ -137,8 +141,8 @@ public class Level : Scene
             
         }
 
-        _spriteBatch.Draw(color1,Data.ui_button_close_pos,new Color(255,255,255));
-        _spriteBatch.Draw(close_icon,new Vector2(Data.ui_button_close_pos.X,Data.ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
+        _spriteBatch.Draw(color1,ui_button_close_pos,new Color(255,255,255));
+        _spriteBatch.Draw(close_icon,new Vector2(ui_button_close_pos.X,ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
         _spriteBatch.End();
     }
 }

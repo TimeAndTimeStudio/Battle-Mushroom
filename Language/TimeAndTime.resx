@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ATK" xml:space="preserve">
+    <value>ATK : </value>
+    <comment>โจมตี</comment>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>CD : </value>
+    <comment>คูลดาว</comment>
+  </data>
+  <data name="CDBUY" xml:space="preserve">
+    <value>CD BUY : </value>
+    <comment>คูลดาวการซื้อ</comment>
+  </data>
+  <data name="Coin" xml:space="preserve">
+    <value>COIN : </value>
+    <comment>เหรียญ</comment>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
     <comment>ปุ่มออก</comment>
   </data>
+  <data name="GameStory" xml:space="preserve">
+    <value>One day, a group of mushrooms was stepped on. Feeling stressed
+and vengeful,they began invading other plants and species. Because
+of this, other plants and living creatures had to come together to 
+defend against the mushroom group's invasion.</value>
+    <comment>เนื้อเรื่อง</comment>
+  </data>
   <data name="Game_Name" xml:space="preserve">
     <value>Battle Mushroom</value>
     <comment>ชื่อเกม</comment>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>HP : </value>
+    <comment>เลือด</comment>
   </data>
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
@@ -140,5 +167,13 @@
   <data name="Random" xml:space="preserve">
     <value>Random</value>
     <comment>สุ่ม</comment>
+  </data>
+  <data name="SPD" xml:space="preserve">
+    <value>SPD : </value>
+    <comment>ความเร็วการเดิน</comment>
+  </data>
+  <data name="Story" xml:space="preserve">
+    <value>Story</value>
+    <comment>เนื้อเรื่อง</comment>
   </data>
 </root>

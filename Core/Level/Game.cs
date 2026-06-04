@@ -28,6 +28,8 @@ public class Level_Game_Main : Scene
 
     private float fontheight;
 
+    public Rectangle ui_button_close_pos;
+
     private Texture2D close_icon;
 
     private Texture2D[] icon_inventory_load = new Texture2D[5];
@@ -101,7 +103,7 @@ public class Level_Game_Main : Scene
         tower_enemy = _content.Load<Texture2D>(Data_Level.tower_enemy[level_value - 1]);
         tower_player = _content.Load<Texture2D>(Data_Level.tower_player[level_value - 1]);
 
-        Data.ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
+        ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
         Data.ui_button_player_1_pos = new Rectangle((int)(width) - (int)(height / 6f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
         Data.ui_button_player_2_pos = new Rectangle((int)(width) - (int)(height / 6f * 2f) - (int)(height / 16f / 2f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
         Data.ui_button_player_3_pos = new Rectangle((int)(width) - (int)(height / 6f * 3f) - (int)(height / 16f / 2f * 2f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
@@ -312,10 +314,11 @@ public class Level_Game_Main : Scene
             switch (t.State)
             {
                 case TouchLocationState.Pressed:
-                    if (Data.ui_button_close_pos.Contains(t.Position))
+                    if (ui_button_close_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Game());
                         MediaPlayer.Stop();
+                        break;
                     }
                     if (Data.ui_button_player_1_pos.Contains(t.Position))
                     {
@@ -483,8 +486,8 @@ public class Level_Game_Main : Scene
         _spriteBatch.Draw(color3,new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)),(int)(height / 2f / 32f * 32f),(int)(height / 16f)),new Color(255,255,255));
         _spriteBatch.Draw(color1,new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)),(int)((height / 2f / 32f * 32f) * ((float)towerhp_enemy / (float)Data_Level.towerhp[level_value - 1] )),(int)(height / 16f)),new Color(255,255,255));
 
-        _spriteBatch.Draw(color1,Data.ui_button_close_pos,new Color(255,255,255));
-        _spriteBatch.Draw(close_icon,new Vector2(Data.ui_button_close_pos.X,Data.ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
+        _spriteBatch.Draw(color1,ui_button_close_pos,new Color(255,255,255));
+        _spriteBatch.Draw(close_icon,new Vector2(ui_button_close_pos.X,ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
         
         _spriteBatch.Draw(color1,Data.ui_button_player_1_pos,new Color(255,255,255));
         _spriteBatch.Draw(color2,new Rectangle((int)(width) - (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 7f / 2f),(int)height - (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 7f / 2f),(int)(height / 7f),(int)(height / 7f)),new Color(255,255,255));

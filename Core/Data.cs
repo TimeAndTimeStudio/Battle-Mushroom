@@ -14,14 +14,6 @@ public static class Data
     public static CoreMain.Scene sceneload = null;
     public static bool checksceneload = false;
 
-    public static Rectangle ui_button_exit_pos;
-    public static Rectangle ui_button_inventory_pos;
-    public static Rectangle ui_button_play_pos;
-    public static Rectangle ui_button_shop_pos;
-    public static Rectangle ui_button_close_pos;
-    public static Rectangle ui_button_language_pos;
-    public static Rectangle ui_button_random_pos;
-
     public static Rectangle ui_button_player_1_pos;
     public static Rectangle ui_button_player_2_pos;
     public static Rectangle ui_button_player_3_pos;
@@ -32,7 +24,6 @@ public static class Data
     public static bool[] level_unlock = new bool[20];
 
     public static int?[] inventory_player = new int?[] {null,null,null,null,null};
-    public static Rectangle[] player_list_button_pos =  new Rectangle[Data_Player.player_list.Length];
     public static string[] backgroundfilename = new string[] {"Background1","Background2","Background3","Background4","Background5","Background6","Background7","Background8"};
 
     public static TouchCollection touch;

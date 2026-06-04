@@ -24,6 +24,9 @@ public class Shop : Scene
     private float width;
     private float height;
 
+    public Rectangle ui_button_close_pos;
+    public Rectangle ui_button_random_pos;
+
     private float fontheight;
 
     private Texture2D close_icon;
@@ -53,8 +56,8 @@ public class Shop : Scene
         width = graphicsDevice.Viewport.Width;
         height = graphicsDevice.Viewport.Height;
 
-        Data.ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
-        Data.ui_button_random_pos = new Rectangle((int)(width / 2f) - (int)(height / 2f / 2f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 2f),(int)(height / 8f));
+        ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
+        ui_button_random_pos = new Rectangle((int)(width / 2f) - (int)(height / 2f / 2f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 2f),(int)(height / 8f));
 
         close_icon = _content.Load<Texture2D>("Content/Icon/close_icon");
         coin_icon = _content.Load<Texture2D>("Content/Icon/coin_game_icon");
@@ -81,11 +84,12 @@ public class Shop : Scene
             switch (t.State)
             {
                 case TouchLocationState.Pressed:
-                    if (Data.ui_button_close_pos.Contains(t.Position))
+                    if (ui_button_close_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Game());
+                        break;
                     }
-                    if (Data.ui_button_random_pos.Contains(t.Position))
+                    if (ui_button_random_pos.Contains(t.Position))
                     {
                         if (Data.coin >= 100)
                         {
@@ -94,12 +98,11 @@ public class Shop : Scene
 
                             background = _content.Load<Texture2D>("Content/Shop/1/shop-1-random-2");
 
+
                             if (random == 0)
                             {
                                 background = _content.Load<Texture2D>("Content/Shop/1/shop-1-random-1");
                                 Data_Player.player_list[Data.shop_random[0][0]] = true;
-                                checkrandom = true;
-                                time = 0;
                             }
                             // if (random == 1)
                             // {
@@ -117,7 +120,11 @@ public class Shop : Scene
                             // {
                             //     Data_Player.player_list[Data.shop_random[0][4]] = true;
                             // }
+                            checkrandom = true;
+                            time = 0;
+                            Data.save();
                         }
+                        break;
                     }
                     break;
             }
@@ -146,11 +153,11 @@ public class Shop : Scene
         
         _spriteBatch.Draw(coin_icon,new Vector2(width - (int)(height / 16) - ((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) - (Data.Tiny5.MeasureString("  0000").X * (height / 12f / 96f) / 1.5f),((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)) / 2 - ((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) / 2), null, new Color(255,255,255),0,Vector2.Zero,(((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) / 20f),SpriteEffects.None,0);
         ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,Data.coin.ToString(),new Vector2(width - (int)(height / 16) - (Data.Tiny5.MeasureString("0000").X * (height / 12f / 96f) / 1.5f),-(int)(fontheight * (height / 12f / 96f) / 1.5f / 4.5f) + ((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)) / 2 - (int)(fontheight * (height / 12f / 96f) / 1.5f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
-        _spriteBatch.Draw(color1,Data.ui_button_random_pos,new Color(255,255,255));
+        _spriteBatch.Draw(color1,ui_button_random_pos,new Color(255,255,255));
         ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.Random,new Vector2((int)(width / 2f) - (ThaiTextRenderer.MeasureString(Data.Tiny5, BattleMushroom.Language.TimeAndTime.Random).X * (height / 12f / 96f) / 1.5f / 2f),(int)height - (int)(height / 8f / 2f) - (int)(height / 16f) - (int)(fontheight * (height / 12f / 96f) / 1.5f / 2f / 2f) - (int)(fontheight * (height / 12f / 96f) / 1.5f / 4.5f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
         
-        _spriteBatch.Draw(color1,Data.ui_button_close_pos,new Color(255,255,255));
-        _spriteBatch.Draw(close_icon,new Vector2(Data.ui_button_close_pos.X,Data.ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
+        _spriteBatch.Draw(color1,ui_button_close_pos,new Color(255,255,255));
+        _spriteBatch.Draw(close_icon,new Vector2(ui_button_close_pos.X,ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
         _spriteBatch.End();
     }
 }

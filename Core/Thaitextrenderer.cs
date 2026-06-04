@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public static class ThaiTextRenderer
 {
-    // สระบน / วรรณยุกต์ (ซ้อนเหนือตัวอักษรหลัก)
     private static readonly HashSet<char> AboveChars = new HashSet<char>
     {
         '\u0E31', // ั
@@ -22,7 +21,6 @@ public static class ThaiTextRenderer
         '\u0E4E', // ๎
     };
 
-    // สระล่าง (ห้อยใต้ตัวอักษรหลัก)
     private static readonly HashSet<char> BelowChars = new HashSet<char>
     {
         '\u0E38', // ุ
@@ -30,7 +28,6 @@ public static class ThaiTextRenderer
         '\u0E3A', // ฺ
     };
 
-    // สระหน้า (วาดก่อนตัวอักษรหลัก)
     private static readonly HashSet<char> LeadingChars = new HashSet<char>
     {
         '\u0E40', // เ
@@ -40,7 +37,11 @@ public static class ThaiTextRenderer
         '\u0E44', // ไ
     };
 
-    // วรรณยุกต์ที่ต้องการ offset แยกจากสระบนทั่วไป
+    private static readonly HashSet<char> TrailingChars = new HashSet<char>
+    {
+        '\u0E33', // ำ
+    };
+
     private static readonly HashSet<char> ToneMarks = new HashSet<char>
     {
         '\u0E48', // ่  mai ek
@@ -49,51 +50,67 @@ public static class ThaiTextRenderer
         '\u0E4B', // ๋  mai jattawa
     };
 
-    // ─────────────────────────────────────────────
-    //  ค่าปรับตำแหน่ง — แก้ตรงนี้ให้พอดีกับ font
-    // ─────────────────────────────────────────────
-
-    // สระบนทั่วไป เช่น ิ ี ึ ื ็ ์ ํ
-    public static float AboveOffsetY    = -10f; // ลบ = ขึ้น, บวก = ลง
-    public static float AboveOffsetX    =   0f; // ลบ = ซ้าย, บวก = ขวา
-
-    // วรรณยุกต์ ่ ้ ๊ ๋ (บวกเพิ่มจาก AboveOffset)
-    public static float ToneMarkOffsetX =   16f; // ลบ = ซ้าย, บวก = ขวา (เลื่อนไปปลายตัวอักษร)
-    public static float ToneMarkOffsetY =   -4f; // ลบ = ขึ้น, บวก = ลง
-
-    // สระล่าง เช่น ุ ู
-    public static float BelowOffsetY    =   -145f; // ลบ = ขึ้น, บวก = ลง
-    public static float BelowOffsetX    =     16f;  // ลบ = ซ้าย, บวก = ขวา
-
-    // สระหน้า เช่น เ แ โ ใ ไ
-    public static float LeadingOffsetX  =  4f; // ลบ = ซ้าย, บวก = ขวา (ชิดตัวอักษรหลัก)
-
-    // ระยะห่างระหว่างตัวอักษรไทย บวกเพิ่มจาก font.Spacing
-    // 0f = เท่ากับ font.Spacing, ลบ = ชิดกว่า, บวก = ห่างกว่า
-    public static float ThaiSpacing     =   0f;
+    private static readonly HashSet<char> ShortAboveVowels = new HashSet<char>
+    {
+        '\u0E31', // ั
+        '\u0E47', // ็
+    };
 
     // ─────────────────────────────────────────────
+    //  ค่าปรับตำแหน่ง
+    // ─────────────────────────────────────────────
 
-    // ตรวจว่าเป็นอักขระในบล็อก Thai Unicode หรือไม่
+    public static float AboveOffsetY                =    0f;
+    public static float AboveOffsetX                =    0f;
+
+    public static float ToneMarkOffsetX             =   16f;
+    public static float ToneMarkOffsetY             =  -40f;  // มีสระบนสูง เช่น กิ่
+    public static float ToneMarkOffsetYShortAbove   =  -30f;  // มีสระบนสั้น เช่น กั่
+    public static float ToneMarkOffsetYNoAbove      =  -10f;  // ไม่มีสระบน เช่น ก่
+
+    public static float BelowOffsetY                = -145f;
+    public static float BelowOffsetX                =   16f;
+
+    public static float LeadingOffsetX              =    4f;
+    public static float TrailingOffsetX             =   -40f;  // ลบ = ชิดซ้าย (ชิดตัวหน้า)
+
+    public static float ThaiSpacing                 =    0f;
+    public static float LineSpacingExtra            =   60f;  // บวกเพิ่มจาก font.LineSpacing
+
+    // ─────────────────────────────────────────────
+
     private static bool IsThai(char c) => c >= '\u0E00' && c <= '\u0E7F';
 
     private struct ThaiCluster
     {
         public char   Base;
-        public string AboveGlyphs;
+        public string AboveVowels;   // non-tone above chars
+        public string ToneGlyphs;    // tone marks only
         public string BelowGlyphs;
         public char   LeadingChar;
-        public bool   HasLeading => LeadingChar != '\0';
+        public char   TrailingChar;
+        public bool   HasLeading     => LeadingChar  != '\0';
+        public bool   HasTrailing    => TrailingChar != '\0';
+        public bool   HasAboveVowel  => AboveVowels.Length > 0;
+
+        public bool HasOnlyShortAbove
+        {
+            get
+            {
+                if (AboveVowels.Length == 0) return false;
+                foreach (char c in AboveVowels)
+                    if (!ShortAboveVowels.Contains(c)) return false;
+                return true;
+            }
+        }
     }
 
-    // segment = ช่วง Thai หรือ non-Thai ที่ติดกัน
     private struct Segment
     {
         public string Text;
         public bool   IsThai;
     }
 
-    // แบ่ง string เป็น segment Thai / non-Thai
     private static List<Segment> SplitSegments(string text)
     {
         var  segs  = new List<Segment>();
@@ -117,7 +134,6 @@ public static class ThaiTextRenderer
         return segs;
     }
 
-    // แยก string ภาษาไทยเป็น cluster (ตัวหลัก + diacritics ที่ตามมา)
     private static List<ThaiCluster> ParseClusters(string text)
     {
         var clusters = new List<ThaiCluster>();
@@ -127,7 +143,6 @@ public static class ThaiTextRenderer
         {
             char c = text[i];
 
-            // ดักสระหน้าก่อนตัวหลัก
             char leading = '\0';
             if (LeadingChars.Contains(c))
             {
@@ -139,19 +154,28 @@ public static class ThaiTextRenderer
 
             var cluster = new ThaiCluster
             {
-                Base        = c,
-                LeadingChar = leading,
-                AboveGlyphs = "",
-                BelowGlyphs = ""
+                Base         = c,
+                LeadingChar  = leading,
+                TrailingChar = '\0',
+                AboveVowels  = "",
+                ToneGlyphs   = "",
+                BelowGlyphs  = ""
             };
             i++;
 
-            // เก็บ diacritics ที่ตามหลังตัวหลัก
             while (i < text.Length)
             {
                 char next = text[i];
-                if      (AboveChars.Contains(next)) { cluster.AboveGlyphs += next; i++; }
-                else if (BelowChars.Contains(next)) { cluster.BelowGlyphs += next; i++; }
+                if (AboveChars.Contains(next))
+                {
+                    if (ToneMarks.Contains(next))
+                        cluster.ToneGlyphs  += next;
+                    else
+                        cluster.AboveVowels += next;
+                    i++;
+                }
+                else if (BelowChars.Contains(next))    { cluster.BelowGlyphs   = next.ToString(); i++; }
+                else if (TrailingChars.Contains(next)) { cluster.TrailingChar  = next;            i++; }
                 else break;
             }
 
@@ -161,25 +185,46 @@ public static class ThaiTextRenderer
         return clusters;
     }
 
-    // วัดขนาดข้อความ (ใช้แทน font.MeasureString สำหรับข้อความที่มีภาษาไทย)
+    private static string[] SplitLines(string text)
+        => text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.None);
+
+    private static float GetLineHeight(SpriteFont font, float scale)
+        => (font.LineSpacing + LineSpacingExtra) * scale;
+
+    // ─────────────────────────────────────────────
+    //  MeasureString
+    // ─────────────────────────────────────────────
+
     public static Vector2 MeasureString(SpriteFont font, string text, float scale = 1f)
     {
+        string[] lines      = SplitLines(text);
+        float    lineHeight = GetLineHeight(font, scale);
+        float    maxW       = 0f;
+
+        foreach (string line in lines)
+        {
+            float lineW = MeasureSingleLine(font, line, scale);
+            if (lineW > maxW) maxW = lineW;
+        }
+
+        return new Vector2(maxW, lineHeight * lines.Length);
+    }
+
+    private static float MeasureSingleLine(SpriteFont font, string text, float scale)
+    {
+        if (string.IsNullOrEmpty(text)) return 0f;
+
         var   segs   = SplitSegments(text);
         float totalW = 0f;
-        float maxH   = 0f;
 
         foreach (var seg in segs)
         {
             if (!seg.IsThai)
             {
-                // non-Thai: MeasureString ปกติ รวม kerning ของ font
-                Vector2 sz = font.MeasureString(seg.Text) * scale;
-                totalW += sz.X;
-                if (sz.Y > maxH) maxH = sz.Y;
+                totalW += font.MeasureString(seg.Text).X * scale;
             }
             else
             {
-                // Thai: วัดทีละ cluster และบวก spacing เอง
                 float spacing = (font.Spacing + ThaiSpacing) * scale;
                 foreach (var cl in ParseClusters(seg.Text))
                 {
@@ -187,16 +232,21 @@ public static class ThaiTextRenderer
                         totalW += font.MeasureString(cl.LeadingChar.ToString()).X * scale + spacing;
 
                     totalW += font.MeasureString(cl.Base.ToString()).X * scale + spacing;
-                    float h = font.MeasureString(cl.Base.ToString()).Y * scale;
-                    if (h > maxH) maxH = h;
+
+                    if (cl.HasTrailing)
+                        totalW += font.MeasureString(cl.TrailingChar.ToString()).X * scale
+                                  + TrailingOffsetX * scale;
                 }
             }
         }
 
-        return new Vector2(totalW - 16f, maxH);
+        return totalW - 16f;
     }
 
-    // วาดข้อความ (ใช้แทน spriteBatch.DrawString สำหรับข้อความที่มีภาษาไทย)
+    // ─────────────────────────────────────────────
+    //  DrawString
+    // ─────────────────────────────────────────────
+
     public static void DrawString(
         SpriteBatch   spriteBatch,
         SpriteFont    font,
@@ -211,6 +261,31 @@ public static class ThaiTextRenderer
     {
         if (string.IsNullOrEmpty(text)) return;
 
+        string[] lines      = SplitLines(text);
+        float    lineHeight = GetLineHeight(font, scale);
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            Vector2 linePos = new Vector2(position.X, position.Y + i * lineHeight);
+            DrawSingleLine(spriteBatch, font, lines[i], linePos,
+                           color, rotation, origin, scale, spriteEffects, layerDepth);
+        }
+    }
+
+    private static void DrawSingleLine(
+        SpriteBatch   spriteBatch,
+        SpriteFont    font,
+        string        text,
+        Vector2       position,
+        Color         color,
+        float         rotation,
+        Vector2       origin,
+        float         scale,
+        SpriteEffects spriteEffects,
+        float         layerDepth)
+    {
+        if (string.IsNullOrEmpty(text)) return;
+
         var   segs    = SplitSegments(text);
         float cursorX = position.X;
 
@@ -218,7 +293,6 @@ public static class ThaiTextRenderer
         {
             if (!seg.IsThai)
             {
-                // non-Thai: DrawString ทั้ง segment เพื่อให้ kerning ทำงาน
                 spriteBatch.DrawString(
                     font, seg.Text,
                     new Vector2(cursorX, position.Y),
@@ -229,13 +303,11 @@ public static class ThaiTextRenderer
             }
             else
             {
-                // Thai: วาดทีละ cluster แยก layer บน/ล่าง
                 float spacing = (font.Spacing + ThaiSpacing) * scale;
 
                 foreach (var cl in ParseClusters(seg.Text))
                 {
-                    // [1] สระหน้า เช่น เ แ โ ใ ไ
-                    //     วาดก่อนตัวหลัก แล้วเลื่อน cursor
+                    // [1] สระหน้า
                     if (cl.HasLeading)
                     {
                         string leadStr = cl.LeadingChar.ToString();
@@ -249,7 +321,6 @@ public static class ThaiTextRenderer
                     }
 
                     // [2] ตัวอักษรหลัก
-                    //     วาดที่ cursorX, Y ปัจจุบัน
                     string baseStr = cl.Base.ToString();
                     float  baseW   = font.MeasureString(baseStr).X * scale;
                     float  baseH   = font.MeasureString(baseStr).Y * scale;
@@ -260,45 +331,77 @@ public static class ThaiTextRenderer
                         color, rotation, origin, scale,
                         spriteEffects, layerDepth);
 
-                    // [3] วรรณยุกต์ / สระบน เช่น ิ ี ็ ์ ่ ้
-                    //     วาดซ้อนเหนือตัวหลัก โดยจัดกึ่งกลางแนวนอน
-                    //     วรรณยุกต์ ่ ้ ๊ ๋ จะได้ ToneMarkOffset เพิ่มด้วย
-                    foreach (char ag in cl.AboveGlyphs)
+                    // [3] สระบน (non-tone)
+                    foreach (char av in cl.AboveVowels)
                     {
-                        string agStr   = ag.ToString();
-                        float  agW     = font.MeasureString(agStr).X * scale;
-                        float  centerX = (baseW - agW) / 2f;          // จัดกึ่งกลางบนตัวหลัก
-                        bool   isTone  = ToneMarks.Contains(ag);
-                        float  extraX  = isTone ? ToneMarkOffsetX * scale : 0f;
-                        float  extraY  = isTone ? ToneMarkOffsetY * scale : 0f;
-                        float  posX    = cursorX + centerX + AboveOffsetX * scale + extraX;
-                        float  posY    = position.Y + AboveOffsetY * scale + extraY;
+                        string avStr   = av.ToString();
+                        float  avW     = font.MeasureString(avStr).X * scale;
+                        float  centerX = (baseW - avW) / 2f;
 
                         spriteBatch.DrawString(
-                            font, agStr,
-                            new Vector2(posX, posY),
+                            font, avStr,
+                            new Vector2(
+                                cursorX + centerX + AboveOffsetX * scale,
+                                position.Y + AboveOffsetY * scale),
                             color, rotation, origin, scale,
                             spriteEffects, layerDepth);
                     }
 
-                    // [4] สระล่าง เช่น ุ ู
-                    //     วาดซ้อนใต้ตัวหลัก โดยจัดกึ่งกลางแนวนอน
+                    // [4] วรรณยุกต์
+                    foreach (char tg in cl.ToneGlyphs)
+                    {
+                        string tgStr   = tg.ToString();
+                        float  tgW     = font.MeasureString(tgStr).X * scale;
+                        float  centerX = (baseW - tgW) / 2f;
+
+                        float posY;
+                        if (!cl.HasAboveVowel)
+                            posY = position.Y + ToneMarkOffsetYNoAbove    * scale;
+                        else if (cl.HasOnlyShortAbove)
+                            posY = position.Y + ToneMarkOffsetYShortAbove * scale;
+                        else
+                            posY = position.Y + AboveOffsetY * scale + ToneMarkOffsetY * scale;
+
+                        spriteBatch.DrawString(
+                            font, tgStr,
+                            new Vector2(
+                                cursorX + centerX + AboveOffsetX * scale + ToneMarkOffsetX * scale,
+                                posY),
+                            color, rotation, origin, scale,
+                            spriteEffects, layerDepth);
+                    }
+
+                    // [5] สระล่าง
                     foreach (char bg in cl.BelowGlyphs)
                     {
                         string bgStr   = bg.ToString();
                         float  bgW     = font.MeasureString(bgStr).X * scale;
-                        float  centerX = (baseW - bgW) / 2f;          // จัดกึ่งกลางใต้ตัวหลัก
-                        float  posX    = cursorX + centerX + BelowOffsetX * scale;
-                        float  posY    = position.Y + baseH + BelowOffsetY * scale;
+                        float  centerX = (baseW - bgW) / 2f;
 
                         spriteBatch.DrawString(
                             font, bgStr,
-                            new Vector2(posX, posY),
+                            new Vector2(
+                                cursorX + centerX + BelowOffsetX * scale,
+                                position.Y + baseH + BelowOffsetY * scale),
                             color, rotation, origin, scale,
                             spriteEffects, layerDepth);
                     }
 
-                    // เลื่อน cursor ไปตัวถัดไป
+                    // [6] สระตาม เช่น ำ ๅ
+                    if (cl.HasTrailing)
+                    {
+                        string trStr = cl.TrailingChar.ToString();
+                        float  trW   = font.MeasureString(trStr).X * scale;
+
+                        spriteBatch.DrawString(
+                            font, trStr,
+                            new Vector2(cursorX + baseW + TrailingOffsetX * scale, position.Y),
+                            color, rotation, origin, scale,
+                            spriteEffects, layerDepth);
+
+                        cursorX += trW + TrailingOffsetX * scale;
+                    }
+
                     cursorX += baseW + spacing;
                 }
             }

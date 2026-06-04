@@ -61,6 +61,42 @@ namespace BattleMushroom.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ATK : .
+        /// </summary>
+        internal static string ATK {
+            get {
+                return ResourceManager.GetString("ATK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CD : .
+        /// </summary>
+        internal static string CD {
+            get {
+                return ResourceManager.GetString("CD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CD BUY : .
+        /// </summary>
+        internal static string CDBUY {
+            get {
+                return ResourceManager.GetString("CDBUY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COIN : .
+        /// </summary>
+        internal static string Coin {
+            get {
+                return ResourceManager.GetString("Coin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string Exit {
@@ -75,6 +111,26 @@ namespace BattleMushroom.Language {
         internal static string Game_Name {
             get {
                 return ResourceManager.GetString("Game_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One day, a group of mushrooms was stepped on. Feeling stressed and vengeful,they began invading other plants and species. Because of this,
+        ///    other plants and living creatures had to come together to defend
+        ///    against the mushroom group’s invasion..
+        /// </summary>
+        internal static string GameStory {
+            get {
+                return ResourceManager.GetString("GameStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HP : .
+        /// </summary>
+        internal static string HP {
+            get {
+                return ResourceManager.GetString("HP", resourceCulture);
             }
         }
         
@@ -111,6 +167,24 @@ namespace BattleMushroom.Language {
         internal static string Random {
             get {
                 return ResourceManager.GetString("Random", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SPD : .
+        /// </summary>
+        internal static string SPD {
+            get {
+                return ResourceManager.GetString("SPD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Story.
+        /// </summary>
+        internal static string Story {
+            get {
+                return ResourceManager.GetString("Story", resourceCulture);
             }
         }
     }

@@ -25,6 +25,9 @@ public class Inventory : Scene
     private float fontheight;
 
     private Texture2D close_icon;
+    public Rectangle ui_button_close_pos;
+
+    private Rectangle[] player_list_button_pos =  new Rectangle[Data_Player.player_list.Length];
 
     private Texture2D[] icon_load = new Texture2D[Data_Player.player_list.Length];
     private Texture2D[] icon_inventory_load = new Texture2D[5];
@@ -59,8 +62,15 @@ public class Inventory : Scene
 
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
+            icon_load[i] = null;
             if (!Data_Player.player_list[i]) continue;
-            icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
+            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500)
+            {
+                icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
+            } else
+            {
+                icon_load[i] = null;
+            }
         }
 
         for (int i = 0; i < Data.inventory_player.Length; i++)
@@ -69,7 +79,7 @@ public class Inventory : Scene
             icon_inventory_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[Data.inventory_player[i].Value]}/player-1-icon");
         }
 
-        Data.ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
+        ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
         Data.ui_button_player_1_pos = new Rectangle((int)(width) - (int)(height / 6f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
         Data.ui_button_player_2_pos = new Rectangle((int)(width) - (int)(height / 6f * 2f) - (int)(height / 16f / 2f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
         Data.ui_button_player_3_pos = new Rectangle((int)(width) - (int)(height / 6f * 3f) - (int)(height / 16f / 2f * 2f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
@@ -91,10 +101,14 @@ public class Inventory : Scene
     {
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
+            icon_load[i] = null;
             if (!Data_Player.player_list[i]) continue;
             if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500)
             {
                 icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
+            } else
+            {
+                icon_load[i] = null;
             }
         }
         foreach (var t in Data.touch)
@@ -102,7 +116,7 @@ public class Inventory : Scene
             switch (t.State)
             {
                 case TouchLocationState.Pressed:
-                    if (Data.ui_button_close_pos.Contains(t.Position))
+                    if (ui_button_close_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Game());
                     }
@@ -225,7 +239,7 @@ public class Inventory : Scene
                     for (int i = 0; i < Data_Player.player_list.Length; i++)
                     {
                         if (!Data_Player.player_list[i]) continue;
-                        if (Data.player_list_button_pos[i].Contains(t.Position))
+                        if (player_list_button_pos[i].Contains(t.Position))
                         {
                             player_select = i;
                         }
@@ -266,7 +280,7 @@ public class Inventory : Scene
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
             if (!Data_Player.player_list[i]) continue;
-            Data.player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
+            player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
             _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
             _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
             if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < -500)
@@ -279,8 +293,8 @@ public class Inventory : Scene
             }
         }
 
-        _spriteBatch.Draw(color1,Data.ui_button_close_pos,new Color(255,255,255));
-        _spriteBatch.Draw(close_icon,new Vector2(Data.ui_button_close_pos.X,Data.ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
+        _spriteBatch.Draw(color1,ui_button_close_pos,new Color(255,255,255));
+        _spriteBatch.Draw(close_icon,new Vector2(ui_button_close_pos.X,ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
         
         _spriteBatch.Draw(color1,Data.ui_button_player_1_pos,new Color(255,255,255));
         _spriteBatch.Draw(color2,new Rectangle((int)(width) - (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 7f / 2f),(int)height - (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 7f / 2f),(int)(height / 7f),(int)(height / 7f)),new Color(255,255,255));

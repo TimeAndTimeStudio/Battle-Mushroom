@@ -117,11 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ATK" xml:space="preserve">
+    <value>ATK : </value>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>CD : </value>
+  </data>
+  <data name="CDBUY" xml:space="preserve">
+    <value>CD BUY : </value>
+  </data>
+  <data name="Coin" xml:space="preserve">
+    <value>COIN : </value>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>ออก</value>
   </data>
+  <data name="GameStory" xml:space="preserve">
+    <value>ในวันหนึ่ง มีเห็ดกลุ่มหนึ่งโดนเหยียบ แล้วทำให้เห็ดกลุ่มนั้นเครียดแค้นจึง
+ไปรุกรานพืชพันธ์ุอื่น และสิ่งมีชีวิตสายพันธ์ุอื่นๆ ด้วยเหตูนี้จึงทำให้ พืชพันธุ์
+และ สิ่งมีชีวิตสายพันธ์ุอื่นๆ ต้องมารวมตัวกันเพื่อป้องกันการรุกรานของเห็ด
+กลุ่มนั้น</value>
+  </data>
   <data name="Game_Name" xml:space="preserve">
     <value>Battle Mushroom</value>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>HP : </value>
   </data>
   <data name="Inventory" xml:space="preserve">
     <value>ช่องเก็บของ</value>
@@ -134,5 +155,11 @@
   </data>
   <data name="Random" xml:space="preserve">
     <value>สุ่ม</value>
+  </data>
+  <data name="SPD" xml:space="preserve">
+    <value>SPD : </value>
+  </data>
+  <data name="Story" xml:space="preserve">
+    <value>เนื้อเรื่อง</value>
   </data>
 </root>
