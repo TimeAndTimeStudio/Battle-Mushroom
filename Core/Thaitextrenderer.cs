@@ -62,7 +62,8 @@ public static class ThaiTextRenderer
     public static float ToneMarkOffsetY =   -4f; // ลบ = ขึ้น, บวก = ลง
 
     // สระล่าง เช่น ุ ู
-    public static float BelowOffsetY    =   4f; // ลบ = ขึ้น, บวก = ลง
+    public static float BelowOffsetY    =   -145f; // ลบ = ขึ้น, บวก = ลง
+    public static float BelowOffsetX    =     16f;  // ลบ = ซ้าย, บวก = ขวา
 
     // สระหน้า เช่น เ แ โ ใ ไ
     public static float LeadingOffsetX  =  4f; // ลบ = ซ้าย, บวก = ขวา (ชิดตัวอักษรหลัก)
@@ -192,7 +193,7 @@ public static class ThaiTextRenderer
             }
         }
 
-        return new Vector2(totalW, maxH);
+        return new Vector2(totalW - 16f, maxH);
     }
 
     // วาดข้อความ (ใช้แทน spriteBatch.DrawString สำหรับข้อความที่มีภาษาไทย)
@@ -287,7 +288,7 @@ public static class ThaiTextRenderer
                         string bgStr   = bg.ToString();
                         float  bgW     = font.MeasureString(bgStr).X * scale;
                         float  centerX = (baseW - bgW) / 2f;          // จัดกึ่งกลางใต้ตัวหลัก
-                        float  posX    = cursorX + centerX;
+                        float  posX    = cursorX + centerX + BelowOffsetX * scale;
                         float  posY    = position.Y + baseH + BelowOffsetY * scale;
 
                         spriteBatch.DrawString(

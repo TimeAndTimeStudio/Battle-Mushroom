@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
 
 namespace CoreMain;
 
@@ -51,6 +52,8 @@ public class Level_Game_Main : Scene
 
     public int towerhp = 0;
     public int towerhp_enemy = 0;
+
+    private Song music_background;
 
     public int level_value;
     public float time_coin;
@@ -124,6 +127,10 @@ public class Level_Game_Main : Scene
         Data_Player.cooldown[3] = 0;
         Data_Player.cooldown[4] = 0;
 
+        music_background = _content.Load<Song>("Content/Music/music-1");
+        MediaPlayer.Play(music_background);
+        MediaPlayer.IsRepeating = true;
+
         Data.checksceneload = true;
     }
     public override void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content)
@@ -131,11 +138,18 @@ public class Level_Game_Main : Scene
         if (towerhp <= 0)
         {
             Data.sceneloaduser(new CoreMain.Game());
+            MediaPlayer.Stop();
         }
         if (towerhp_enemy <= 0)
         {
             Data.sceneloaduser(new CoreMain.Game());
-            Data.coin += 100;
+            MediaPlayer.Stop();
+            Data.coin += Data_Level.coinwin[level_value - 1];
+
+            if (level_value < 2)
+            {
+                Data.level_unlock[level_value] = true;
+            }
             Data.save();
         }
 
@@ -301,6 +315,7 @@ public class Level_Game_Main : Scene
                     if (Data.ui_button_close_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Game());
+                        MediaPlayer.Stop();
                     }
                     if (Data.ui_button_player_1_pos.Contains(t.Position))
                     {

@@ -119,19 +119,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Icon/close_icon.png
-
-#begin Content/Icon/close_icon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Icon/close_icon.png
+/build:Content/Icon/close_icon.png;Content/Icon/close_icon
 
 #begin Content/Icon/coin_game_icon.png
 /importer:TextureImporter
@@ -143,19 +131,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Icon/coin_game_icon.png
-
-#begin Content/Icon/coin_game_icon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Icon/coin_game_icon.png
+/build:Content/Icon/coin_game_icon.png;Content/Icon/coin_game_icon
 
 #begin Content/Icon/coin_icon.png
 /importer:TextureImporter
@@ -167,19 +143,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Icon/coin_icon.png
-
-#begin Content/Icon/coin_icon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Icon/coin_icon.png
+/build:Content/Icon/coin_icon.png;Content/Icon/coin_icon
 
 #begin Content/Icon/cooldown-icon.png
 /importer:TextureImporter
@@ -191,7 +155,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Icon/cooldown-icon.png
+/build:Content/Icon/cooldown-icon.png;Content/Icon/cooldown-icon
 
 #begin Content/Icon/lock_icon.png
 /importer:TextureImporter
@@ -203,19 +167,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Icon/lock_icon.png
-
-#begin Content/Icon/lock_icon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Icon/lock_icon.png
+/build:Content/Icon/lock_icon.png;Content/Icon/lock_icon
 
 #begin Content/Icon/shop_icon.png
 /importer:TextureImporter
@@ -227,19 +179,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Icon/shop_icon.png
-
-#begin Content/Icon/shop_icon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Icon/shop_icon.png
+/build:Content/Icon/shop_icon.png;Content/Icon/shop_icon
 
 #begin Content/Level-Png/background.png
 /importer:TextureImporter
@@ -251,7 +191,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Level-Png/background.png
+/build:Content/Level-Png/background.png;Content/Level-Png/background
 
 #begin Content/Level-Png/biggrass.png
 /importer:TextureImporter
@@ -263,7 +203,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Level-Png/biggrass.png
+/build:Content/Level-Png/biggrass.png;Content/Level-Png/biggrass
 
 #begin Content/Level-Png/enemytower.png
 /importer:TextureImporter
@@ -275,7 +215,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Level-Png/enemytower.png
+/build:Content/Level-Png/enemytower.png;Content/Level-Png/enemytower
 
 #begin Content/Level-Png/ground.png
 /importer:TextureImporter
@@ -287,7 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Level-Png/ground.png
+/build:Content/Level-Png/ground.png;Content/Level-Png/ground
 
 #begin Content/Level-Png/mountain.png
 /importer:TextureImporter
@@ -299,7 +239,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Level-Png/mountain.png
+/build:Content/Level-Png/mountain.png;Content/Level-Png/mountain
 
 #begin Content/Level-Png/playertower.png
 /importer:TextureImporter
@@ -311,7 +251,13 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Level-Png/playertower.png
+/build:Content/Level-Png/playertower.png;Content/Level-Png/playertower
+
+#begin Content/Music/music-1.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/music-1.ogg
 
 #begin Content/Png/enemy-1/enemy-1.png
 /importer:TextureImporter
@@ -408,6 +354,102 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Png/enemy-1/enemy-attack4.png;Content/Png/enemy-1/enemy-attack4
+
+#begin Content/Png/enemy-2/enemy-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-1.png;Content/Png/enemy-2/enemy-1
+
+#begin Content/Png/enemy-2/enemy-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-2.png;Content/Png/enemy-2/enemy-2
+
+#begin Content/Png/enemy-2/enemy-3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-3.png;Content/Png/enemy-2/enemy-3
+
+#begin Content/Png/enemy-2/enemy-4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-4.png;Content/Png/enemy-2/enemy-4
+
+#begin Content/Png/enemy-2/enemy-attack1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-attack1.png;Content/Png/enemy-2/enemy-attack1
+
+#begin Content/Png/enemy-2/enemy-attack2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-attack2.png;Content/Png/enemy-2/enemy-attack2
+
+#begin Content/Png/enemy-2/enemy-attack3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-attack3.png;Content/Png/enemy-2/enemy-attack3
+
+#begin Content/Png/enemy-2/enemy-attack4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-2/enemy-attack4.png;Content/Png/enemy-2/enemy-attack4
 
 #begin Content/Png/player-1/player-1-icon.png
 /importer:TextureImporter
@@ -516,6 +558,150 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Png/player-1/player-attack-4.png;Content/Png/player-1/player-attack-4
+
+#begin Content/Png/player-2/player-1-icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-1-icon.png;Content/Png/player-2/player-1-icon
+
+#begin Content/Png/player-2/player-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-1.png;Content/Png/player-2/player-1
+
+#begin Content/Png/player-2/player-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-2.png;Content/Png/player-2/player-2
+
+#begin Content/Png/player-2/player-3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-3.png;Content/Png/player-2/player-3
+
+#begin Content/Png/player-2/player-4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-4.png;Content/Png/player-2/player-4
+
+#begin Content/Png/player-2/player-attack-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-attack-1.png;Content/Png/player-2/player-attack-1
+
+#begin Content/Png/player-2/player-attack-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-attack-2.png;Content/Png/player-2/player-attack-2
+
+#begin Content/Png/player-2/player-attack-3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-attack-3.png;Content/Png/player-2/player-attack-3
+
+#begin Content/Png/player-2/player-attack-4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/player-2/player-attack-4.png;Content/Png/player-2/player-attack-4
+
+#begin Content/Shop/1/shop-1-random-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Shop/1/shop-1-random-1.png;Content/Shop/1/shop-1-random-1
+
+#begin Content/Shop/1/shop-1-random-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Shop/1/shop-1-random-2.png;Content/Shop/1/shop-1-random-2
+
+#begin Content/Shop/1/shop-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Shop/1/shop-1.png;Content/Shop/1/shop-1
 
 #begin Font/Tiny5.spritefont
 /importer:FontDescriptionImporter

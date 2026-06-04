@@ -126,7 +126,13 @@
   <data name="Inventory" xml:space="preserve">
     <value>ช่องเก็บของ</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>TH</value>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>เล่น</value>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>สุ่ม</value>
   </data>
 </root>

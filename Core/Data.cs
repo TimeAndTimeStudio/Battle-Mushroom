@@ -8,6 +8,7 @@ public static class Data
 {
     public static bool exit = false;
     public static int towerhp = 100;
+    public static string Language = "en-US";
     public static int coin = 0;
     public static SpriteFont Tiny5;
     public static CoreMain.Scene sceneload = null;
@@ -18,6 +19,8 @@ public static class Data
     public static Rectangle ui_button_play_pos;
     public static Rectangle ui_button_shop_pos;
     public static Rectangle ui_button_close_pos;
+    public static Rectangle ui_button_language_pos;
+    public static Rectangle ui_button_random_pos;
 
     public static Rectangle ui_button_player_1_pos;
     public static Rectangle ui_button_player_2_pos;
@@ -33,6 +36,11 @@ public static class Data
     public static string[] backgroundfilename = new string[] {"Background1","Background2","Background3","Background4","Background5","Background6","Background7","Background8"};
 
     public static TouchCollection touch;
+
+    public static int[][] shop_random = new int[][]
+    {
+        new int[] {1}
+    };
 
     public static void sceneloaduser(CoreMain.Scene scene)
     {
@@ -60,6 +68,17 @@ public static class Data
         }
         w.Write(coin);
 
+        for (int i = 0; i < level_unlock.Length; i++)
+        {
+            w.Write(level_unlock[i]);
+        }
+        for (int i = 0; i < Data_Player.player_list.Length; i++)
+        {
+            w.Write(Data_Player.player_list[i]);
+        }
+        
+        w.Write(Language);
+
         w.Close();
         fs.Close();
     }
@@ -83,6 +102,19 @@ public static class Data
         }
 
         coin = r.ReadInt32();
+        if (r.BaseStream.Position >= r.BaseStream.Length) return;
+        
+        for (int i = 0; i < level_unlock.Length; i++)
+        {
+            level_unlock[i] = r.ReadBoolean();
+        }
+        for (int i = 0; i < Data_Player.player_list.Length; i++)
+        {
+            Data_Player.player_list[i] = r.ReadBoolean();
+        }
+
+        Language = r.ReadString();
+
         r.Close();
         fs.Close();
     }

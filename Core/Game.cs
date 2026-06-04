@@ -64,6 +64,7 @@ public class Game : Scene
         Data.ui_button_inventory_pos = new Rectangle((int)(height / 16f),(int)height - (int)(height / 8f * 2) - (int)(height / 24f * 2f),(int)(height / 2f),(int)(height / 8f));
         Data.ui_button_play_pos = new Rectangle((int)(height / 16f),(int)height - (int)(height / 8f * 3) - (int)(height / 24f * 2.5f),(int)(height / 2f),(int)(height / 8f));
         Data.ui_button_shop_pos = new Rectangle((int)(width) - (int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
+        Data.ui_button_language_pos = new Rectangle((int)(width) - (int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f * 2) - (int)(height / 24f * 2f),(int)(height / 8f),(int)(height / 8f));
 
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
 
@@ -94,6 +95,11 @@ public class Game : Scene
                         Data.exit = true;
                         break;
                     }
+                    if (Data.ui_button_shop_pos.Contains(t.Position))
+                    {
+                        Data.sceneloaduser(new Shop());
+                        break;
+                    }
                     if (Data.ui_button_inventory_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Inventory());
@@ -102,6 +108,19 @@ public class Game : Scene
                     if (Data.ui_button_play_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Level());
+                        break;
+                    }
+                    if (Data.ui_button_language_pos.Contains(t.Position))
+                    {
+                        if (Data.Language == "th-TH")
+                        {
+                            Data.Language = "en-US";
+                        } else
+                        {
+                            Data.Language = "th-TH";
+                        }
+                        Data.save();
+                        Data.exit = true;
                         break;
                     }
                     break;
@@ -132,6 +151,9 @@ public class Game : Scene
         
         _spriteBatch.Draw(color1,Data.ui_button_shop_pos,new Color(255,255,255));
         _spriteBatch.Draw(shop_icon,new Vector2(Data.ui_button_shop_pos.X,Data.ui_button_shop_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);
+
+        _spriteBatch.Draw(color1,Data.ui_button_language_pos,new Color(255,255,255));
+        ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.Language,new Vector2(Data.ui_button_language_pos.X + Data.ui_button_language_pos.Width / 2f - (ThaiTextRenderer.MeasureString(Data.Tiny5,BattleMushroom.Language.TimeAndTime.Language).X * (height / 12f / 96f) / 1.5f / 2f),Data.ui_button_language_pos.Y -(int)(fontheight * (height / 12f / 96f) / 1.5f / 4.5f) + (int)(height / 8f / 2f) - (int)(fontheight * (height / 12f / 96f) / 1.5f / 1.75f / 2f)),rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
         _spriteBatch.End();
     }
 }

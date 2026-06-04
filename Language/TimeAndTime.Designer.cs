@@ -88,11 +88,29 @@ namespace BattleMushroom.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EN.
+        /// </summary>
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         internal static string Play {
             get {
                 return ResourceManager.GetString("Play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Random.
+        /// </summary>
+        internal static string Random {
+            get {
+                return ResourceManager.GetString("Random", resourceCulture);
             }
         }
     }

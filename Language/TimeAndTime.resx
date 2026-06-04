@@ -129,8 +129,16 @@
     <value>Inventory</value>
     <comment>ปุ่มช่องเก็บของ</comment>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>EN</value>
+    <comment>ภาษาเกม</comment>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>Play</value>
     <comment>ปุ่มเล่น</comment>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>Random</value>
+    <comment>สุ่ม</comment>
   </data>
 </root>
