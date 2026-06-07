@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
 
 namespace CoreMain;
 
@@ -32,6 +33,8 @@ public class Game : Scene
 
     private Texture2D shop_icon;
     private Texture2D docs_icon;
+
+    private Song music_background;
 
     private float width;
     private float height;
@@ -77,6 +80,14 @@ public class Game : Scene
         ui_button_docs_pos = new Rectangle((int)(width) - (int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f * 2) - (int)(height / 24f * 2f),(int)(height / 8f),(int)(height / 8f));
 
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
+
+        music_background = _content.Load<Song>("Content/Music/music-2");
+        if (MediaPlayer.State != MediaState.Playing)
+        {
+            MediaPlayer.Play(music_background);
+        }
+        
+        MediaPlayer.IsRepeating = true;
 
         Data.checksceneload = true;
     }

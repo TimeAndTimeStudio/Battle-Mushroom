@@ -14,6 +14,8 @@ public class Inventory : Scene
 
     private Texture2D coin_icon;
 
+    private int uipos = 0;
+
     private Color rgb_color1;
     private Color rgb_color2;
     private Color rgb_color3;
@@ -280,18 +282,20 @@ public class Inventory : Scene
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
             if (!Data_Player.player_list[i]) continue;
-            player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
-            _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
-            _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
-            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < -500)
+            player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
+            _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
+            _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
+            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) < -500)
             {
                 icon_load[i] = null;
             }
             if (icon_load[i] != null)
             {
-                _spriteBatch.Draw(icon_load[i],new Vector2((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255), 0, Vector2.Zero,(height / 3.5f) / 24f,SpriteEffects.None,0);
+                _spriteBatch.Draw(icon_load[i],new Vector2((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255), 0, Vector2.Zero,(height / 3.5f) / 24f,SpriteEffects.None,0);
             }
+            uipos += 1;
         }
+        uipos = 0;
 
         _spriteBatch.Draw(color1,ui_button_close_pos,new Color(255,255,255));
         _spriteBatch.Draw(close_icon,new Vector2(ui_button_close_pos.X,ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);

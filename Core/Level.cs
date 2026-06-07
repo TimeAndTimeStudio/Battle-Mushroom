@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
 
 namespace CoreMain;
 
@@ -83,6 +84,7 @@ public class Level : Scene
                         if (Data.level_button_pos[i].Contains(t.Position))
                         {
                             Data.sceneloaduser(new Level_Game_Main(i + 1));
+                            MediaPlayer.Stop();
                             break;
                         }
                     }

@@ -9,7 +9,7 @@ public static class Data
     public static bool exit = false;
     public static int towerhp = 100;
     public static string Language = "en-US";
-    public static int coin = 0;
+    public static int coin = 100000;
     public static SpriteFont Tiny5;
     public static CoreMain.Scene sceneload = null;
     public static bool checksceneload = false;
@@ -30,7 +30,7 @@ public static class Data
 
     public static int[][] shop_random = new int[][]
     {
-        new int[] {1}
+        new int[] {1,2}
     };
 
     public static void sceneloaduser(CoreMain.Scene scene)
