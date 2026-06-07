@@ -1,0 +1,13 @@
+{
+  "name":      "TimeAndTime Studio",
+  "shortName": "TAT Studio",
+  "tagline":   "ผู้พัฒนาเกม Indie สัญชาติไทย",
+  "about":     "TAT Studio คือทีมพัฒนาเกม Indie สัญชาติไทย ที่มุ่งสร้างประสบการณ์เกมที่ไม่ซ้ำใคร รองรับหลายแพลตฟอร์ม ด้วยงบประมาณที่จำกัดแต่ความคิดสร้างสรรค์ที่ไม่มีขีดจำกัด",
+  "website":   "https://www.timeandtime.online/",
+  "logo":      "",
+  "links": {
+    "github":  "https://github.com/TimeAndTimeStudio",
+    "youtube": "https://www.youtube.com/@TAT_Game_Real",
+    "itch":    "https://timeandtimestudio.itch.io"
+  }
+}
