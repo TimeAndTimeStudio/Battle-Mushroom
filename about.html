@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="เกี่ยวกับ TAT Studio">
+  <meta name="theme-color" content="#0D0D0D">
+  <title>เกี่ยวกับเรา — TAT Studio</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23FF6B00'/><text x='50' y='60' font-size='60' font-weight='bold' fill='%23000'>T</text></svg>">
+  <link rel="canonical" href="https://www.timeandtime.online/about.html">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    :root {
+      --bg: #0D0D0D;
+      --bg-card: #111111;
+      --bg-subtle: #161616;
+      --bg-hover: #1a1a1a;
+      --border: #242424;
+      --border-mid: #303030;
+      --border-hover: #FF6B00;
+      --accent: #FF6B00;
+      --accent-dim: rgba(255, 107, 0, 0.10);
+      --accent-muted: rgba(255, 107, 0, 0.06);
+      --text: #E2E2E2;
+      --text-sec: #A0A0A0;
+      --text-muted: #6B6B6B;
+      --text-dim: #404040;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --radius-xs: 4px;
+      --max-w: 1080px;
+      --nav-h: 60px;
+      --section-gap: 80px;
+      --card-pad: 24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: var(--text); font-family: "Inter", system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.6; }
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
+    h4, h5, h6, label, .label { font-family: "Inter", sans-serif; font-weight: 500; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    svg { flex-shrink: 0; }
+
+    .icon { display: inline-flex; align-items: center; justify-content: center; width: 1em; height: 1em; vertical-align: middle; }
+    .icon svg { width: 100%; height: 100%; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: rgba(13, 13, 13, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar-inner { width: 100%; max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; gap: 32px; }
+    .nav-logo { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 4px; margin-left: auto; list-style: none; }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-sec);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg-subtle); }
+    .nav-links a.active { color: var(--accent); }
+
+    .section {
+      padding: var(--section-gap) 24px;
+    }
+    .section-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section-header {
+      margin-bottom: 40px;
+    }
+    .section-header h2 {
+      font-size: 1.75rem;
+      color: var(--text);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--bg-subtle);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-dim); }
+    .thumb-placeholder svg { width: 4rem; height: 4rem; }
+
+    .studio-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    @media (max-width: 900px) { .studio-header { grid-template-columns: 1fr; gap: 24px; } }
+    .studio-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .studio-header .tagline {
+      font-size: 1.125rem;
+      color: var(--text-sec);
+      margin-bottom: 24px;
+    }
+    .studio-header .description {
+      color: var(--text-sec);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .link-card:hover {
+      border-color: var(--border-hover);
+      background: var(--accent-muted);
+    }
+    .link-card-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .link-card-icon svg { width: 1.125rem; height: 1.125rem; color: var(--text-sec); }
+    .link-card:hover .link-card-icon svg { color: var(--accent); }
+    .link-card-text { flex: 1; }
+    .link-card-name { font-weight: 600; font-size: 0.9375rem; color: var(--text); }
+    .link-card-url { font-size: 0.8rem; color: var(--text-muted); }
+    .link-card-arrow { color: var(--text-dim); }
+    .link-card-arrow svg { width: 1rem; height: 1rem; }
+
+    .footer {
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const SITE = {
+      baseUrl: "https://www.timeandtime.online",
+      dataUrl: {
+        studio: "https://raw.githubusercontent.com/TimeAndTimeStudio/Battle-Mushroom/main/data/studio.json",
+        games:  "https://raw.githubusercontent.com/TimeAndTimeStudio/Battle-Mushroom/main/data/games.json",
+      },
+      nav: [
+        { label: "หน้าแรก",  href: "index.html"  },
+        { label: "เกม",      href: "games.html"  },
+        { label: "Devlog",   href: "devlog.html" },
+        { label: "เกี่ยวกับ", href: "about.html" },
+      ]
+    };
+
+    const ICONS = {
+      github: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
+      youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>`,
+      itch: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9v6M12 9v6M15 9v6"/></svg>`,
+      globe: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 1 10 4m0 12a14.5 14.5 0 0 1-10 4M2 12a14.5 14.5 0 0 0 10 4m0-12a14.5 14.5 0 0 0-10 4"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`,
+      externalLink: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+      image: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`,
+    };
+
+    async function fetchJSON(url) {
+      try {
+        const r = await fetch(url);
+        if (!r.ok) throw new Error(r.status);
+        return await r.json();
+      } catch (e) {
+        console.error('[TAT]', url, e);
+        return null;
+      }
+    }
+
+    function renderNav(studio) {
+      const current = location.pathname.split('/').pop() || 'index.html';
+      const logo = document.getElementById('nav-logo');
+      logo.innerHTML = studio ? `${studio.shortName.split(' ')[0]}<span>.</span>` : 'TAT<span>.</span>';
+
+      const ul = document.getElementById('nav-links');
+      ul.innerHTML = SITE.nav.map(n => `<li><a href="${n.href}" class="${current === n.href ? 'active' : ''}">${n.label}</a></li>`).join('');
+    }
+
+    function renderFooter(studio) {
+      const s = studio || { shortName: 'TAT Studio' };
+      document.getElementById('footer').innerHTML = `&copy; ${new Date().getFullYear()} ${s.shortName}. All rights reserved.`;
+    }
+
+    function renderAbout(studio, games) {
+      const header = document.getElementById('studio-header');
+      header.innerHTML = `
+        <div>
+          <h1>${studio.name}</h1>
+          <p class="tagline">${studio.tagline}</p>
+          <p class="description">${studio.about}</p>
+        </div>
+        <div class="thumb">
+          <div class="thumb-placeholder">${ICONS.image}</div>
+        </div>
+      `;
+
+      const platforms = new Set();
+      games.forEach(g => {
+        g.info.platform.split(',').forEach(p => platforms.add(p.trim()));
+      });
+
+      const startYear = Math.min(...games.map(g => {
+        const dates = g.devlog?.filter(d => d.date).map(d => new Date(d.date).getFullYear()) || [];
+        return dates.length > 0 ? Math.min(...dates) : new Date().getFullYear();
+      }));
+
+      const stats = document.getElementById('stats');
+      stats.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-number">${games.length}</div>
+          <div class="stat-label">เกม</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${platforms.size}</div>
+          <div class="stat-label">Platform</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${startYear}</div>
+          <div class="stat-label">เริ่มต้น</div>
+        </div>
+      `;
+
+      const links = document.getElementById('links');
+      let linksHtml = '';
+      if (studio.links.github) linksHtml += `
+        <a href="${studio.links.github}" target="_blank" rel="noopener" class="link-card">
+          <div class="link-card-icon">${ICONS.github}</div>
+          <div class="link-card-text">
+            <div class="link-card-name">GitHub</div>
+            <div class="link-card-url">github.com</div>
+          </div>
+          <div class="link-card-arrow">${ICONS.externalLink}</div>
+        </a>
+      `;
+      if (studio.links.youtube) linksHtml += `
+        <a href="${studio.links.youtube}" target="_blank" rel="noopener" class="link-card">
+          <div class="link-card-icon">${ICONS.youtube}</div>
+          <div class="link-card-text">
+            <div class="link-card-name">YouTube</div>
+            <div class="link-card-url">youtube.com</div>
+          </div>
+          <div class="link-card-arrow">${ICONS.externalLink}</div>
+        </a>
+      `;
+      if (studio.links.itch) linksHtml += `
+        <a href="${studio.links.itch}" target="_blank" rel="noopener" class="link-card">
+          <div class="link-card-icon">${ICONS.itch}</div>
+          <div class="link-card-text">
+            <div class="link-card-name">Itch.io</div>
+            <div class="link-card-url">itch.io</div>
+          </div>
+          <div class="link-card-arrow">${ICONS.externalLink}</div>
+        </a>
+      `;
+      if (studio.website) linksHtml += `
+        <a href="${studio.website}" target="_blank" rel="noopener" class="link-card">
+          <div class="link-card-icon">${ICONS.globe}</div>
+          <div class="link-card-text">
+            <div class="link-card-name">Website</div>
+            <div class="link-card-url">timeandtime.online</div>
+          </div>
+          <div class="link-card-arrow">${ICONS.externalLink}</div>
+        </a>
+      `;
+      links.innerHTML = linksHtml;
+    }
+
+    async function init() {
+      const studio = await fetchJSON(SITE.dataUrl.studio);
+      const games = await fetchJSON(SITE.dataUrl.games);
+
+      if (studio) renderNav(studio);
+      if (studio) renderFooter(studio);
+
+      if (studio && games) {
+        renderAbout(studio, games);
+      }
+    }
+
+    init();
+  </script>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-logo" id="nav-logo">TAT<span>.</span></div>
+      <ul class="nav-links" id="nav-links"></ul>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="studio-header" id="studio-header"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>สถิติ</h2>
+      </div>
+      <div class="grid-3" id="stats"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>ลิงก์</h2>
+      </div>
+      <div class="grid-2" id="links"></div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+</body>
+</html>
