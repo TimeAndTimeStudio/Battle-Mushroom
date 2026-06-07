@@ -1,0 +1,58 @@
+[
+  {
+    "id":          "battle-mushroom",
+    "title":       "Battle Mushroom",
+    "subtitle":    "เมื่อเห็ดถูกเหยียบ... สงครามจึงเริ่มต้น",
+    "status":      "demo",
+    "isFeatured":  true,
+    "accentColor": "#FF6B00",
+    "images": {
+      "logo":        "",
+      "banner":      "",
+      "screenshots": ["", "", ""]
+    },
+    "description": {
+      "th": "ในวันหนึ่ง มีเห็ดกลุ่มหนึ่งโดนเหยียบ...",
+      "en": "One day, a group of mushrooms was stepped on..."
+    },
+    "tags": ["กลยุทธ์", "แอคชัน", "Mobile", "Desktop", "Multiplatform"],
+    "info": {
+      "size":        "~10 MB",
+      "version":     "Demo 1.0.3",
+      "language":    "TH / EN",
+      "platform":    "Android, Windows",
+      "license":     "GPL-3.0",
+      "releaseDate": "07 Jun 2026"
+    },
+    "links": {
+      "taptap":         "https://www.taptap.io/th/app/34043235",
+      "itch":           "https://timeandtimestudio.itch.io/battle-mushroom",
+      "github":         "https://github.com/TimeAndTimeStudio/Battle-Mushroom",
+      "githubReleases": "https://github.com/TimeAndTimeStudio/Battle-Mushroom/releases"
+    },
+    "downloads": [
+      {
+        "platform":    "Android",
+        "platformKey": "android",
+        "version":     "Demo 1.0.3",
+        "size":        "~10 MB",
+        "date":        "07 Jun 2026",
+        "filename":    "com.timeandtimestudio.battlemushroom-Signed.apk",
+        "url":         "https://github.com/TimeAndTimeStudio/Battle-Mushroom/releases/download/Demo_1.0.3/com.timeandtimestudio.battlemushroom-Signed.apk",
+        "isLatest":    true,
+        "note":        "ต้องเปิดใช้ 'ติดตั้งจากแหล่งที่ไม่รู้จัก' ในการตั้งค่า Android ก่อนติดตั้ง"
+      }
+    ],
+    "devlog": [
+      { "day": 9, "version": "Demo 1.0.3", "note": "เพิ่มระบบ wiki และระบบกาชา เสร็จไปแล้ว 80%", "date": "07 Jun 2026", "isLatest": true },
+      { "day": 8, "version": "Demo 1.0.2", "note": "ทำระบบกาชา",                                   "date": "04 Jun 2026" },
+      { "day": 7, "version": "Demo 1.0.1", "note": "หน้า level เสร็จไป 80% ++",                    "date": "04 Jun 2026" },
+      { "day": 6, "version": "Demo 1.0.0", "note": "กำลังทำหน้า level",                             "date": "03 Jun 2026" },
+      { "day": 5, "version": null,         "note": "ทำได้ Inventory เสร็จแล้ว 90%",                "date": null },
+      { "day": 4, "version": null,         "note": "หน้า Inventory ใกล้เสร็จ",                     "date": null },
+      { "day": 3, "version": null,         "note": "กำลังทำหน้า Inventory",                        "date": null },
+      { "day": 2, "version": null,         "note": "ปุ่มกับพื้นหลัง",                              "date": null },
+      { "day": 1, "version": null,         "note": "ทำ top bar เสร็จแล้ว",                         "date": null }
+    ]
+  }
+]
