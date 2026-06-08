@@ -66,7 +66,7 @@ public class Inventory : Scene
         {
             icon_load[i] = null;
             if (!Data_Player.player_list[i]) continue;
-            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500)
+            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
             {
                 icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
             } else
@@ -105,7 +105,7 @@ public class Inventory : Scene
         {
             icon_load[i] = null;
             if (!Data_Player.player_list[i]) continue;
-            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500)
+            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
             {
                 icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
             } else
@@ -285,7 +285,7 @@ public class Inventory : Scene
             player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
             _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
             _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
-            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) < -500)
+            if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) < -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * uipos) + (int)(height / 3f * uipos) < 4000)
             {
                 icon_load[i] = null;
             }

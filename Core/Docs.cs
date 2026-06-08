@@ -34,8 +34,8 @@ public class Docs : Scene
 
     private Texture2D close_icon;
 
-    private Texture2D[] icon_load = new Texture2D[Data_Player.player_list.Length];
-    private Rectangle[] player_list_button_pos =  new Rectangle[Data_Player.player_list.Length];
+    private Texture2D[] icon_load = new Texture2D[MathHelper.Max(Data_Player.player_list.Length,Data_Enemy.enemy_name_file.Length)];
+    private Rectangle[] player_list_button_pos =  new Rectangle[MathHelper.Max(Data_Player.player_list.Length,Data_Enemy.enemy_name_file.Length)];
 
     private bool checkrun = false;
     private float touchx;
@@ -89,7 +89,7 @@ public class Docs : Scene
         {
             for (int i = 0; i < Data_Player.player_list.Length; i++)
             {
-                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500)
+                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
                 {
                     icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
                 } else
@@ -101,7 +101,7 @@ public class Docs : Scene
         {
             for (int i = 0; i < Data_Enemy.enemy_name_file.Length; i++)
             {
-                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500)
+                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
                 {
                     icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Enemy.enemy_name_file[i]}/enemy-icon");
                 } else
@@ -164,7 +164,7 @@ public class Docs : Scene
                         Data.sceneloaduser(new Game());
                         break;
                     }
-                    for (int i = 0; i < Data_Player.player_list.Length; i++)
+                    for (int i = 0; i < MathHelper.Max(Data_Player.player_list.Length,Data_Enemy.enemy_name_file.Length); i++)
                     {
                         if (player_select != null) break;
                         if (player_list_button_pos[i].Contains(t.Position))
@@ -226,7 +226,7 @@ public class Docs : Scene
         {
             _spriteBatch.Draw(color1,new Rectangle((int)(height / 16f) ,(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
             _spriteBatch.Draw(color3,new Rectangle((int)(height / 16f) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
-            _spriteBatch.Draw(icon_load[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255), 0, Vector2.Zero,(height / 3.5f) / 24f,SpriteEffects.None,0);
+            _spriteBatch.Draw(icon_load[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255), 0, Vector2.Zero,(height / 3.5f) / Data_Enemy.enemy_size_icon[player_select.Value],SpriteEffects.None,0);
 
             ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.ATK + Data_Enemy.attack[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 3f) + (int)(height / 16f / 4f),(int)(height / 2.5f - ((int)(height / 3f / 2f)))),rgb_color1,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
             ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.HP + Data_Enemy.hp[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 3f) + (int)(height / 16f / 4f),(int)(height / 2.5f - ((int)(height / 3f / 2f))) + (int)(fontheight * (height / 12f / 96f / 1.5f))),rgb_color1,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
@@ -239,13 +239,13 @@ public class Docs : Scene
                 player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
                 _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
                 _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
-                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < -500)
+                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
                 {
                     icon_load[i] = null;
                 }
                 if (icon_load[i] != null)
                 {
-                    _spriteBatch.Draw(icon_load[i],new Vector2((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255), 0, Vector2.Zero,(height / 3.5f) / 24f,SpriteEffects.None,0);
+                    _spriteBatch.Draw(icon_load[i],new Vector2((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255), 0, Vector2.Zero,(height / 3.5f) / Data_Enemy.enemy_size_icon[i],SpriteEffects.None,0);
                 }
             }
         }
@@ -270,7 +270,7 @@ public class Docs : Scene
                 player_list_button_pos[i] = new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f));
                 _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i),(int)(height / 2.5f - ((int)(height / 3f / 2f))),(int)(height / 3f),(int)(height / 3f)), new Color(255,255,255));
                 _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f))),(int)(height / 3.5f),(int)(height / 3.5f)), new Color(255,255,255));
-                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < -500)
+                if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
                 {
                     icon_load[i] = null;
                 }

@@ -9,7 +9,7 @@ public static class Data
     public static bool exit = false;
     public static int towerhp = 100;
     public static string Language = "en-US";
-    public static int coin = 100000;
+    public static int coin = 0;
     public static SpriteFont Tiny5;
     public static CoreMain.Scene sceneload = null;
     public static bool checksceneload = false;
@@ -46,6 +46,8 @@ public static class Data
 
         FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "game.bin"), FileMode.Create);
         BinaryWriter w  = new BinaryWriter(fs);
+
+        w.Write(Language);
         
         for (int i = 0; i < inventory_player.Length; i++)
         {
@@ -67,8 +69,6 @@ public static class Data
         {
             w.Write(Data_Player.player_list[i]);
         }
-        
-        w.Write(Language);
 
         w.Close();
         fs.Close();
@@ -80,6 +80,8 @@ public static class Data
         FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "game.bin"), FileMode.Open);
         BinaryReader r  = new BinaryReader(fs);
         
+        Language = r.ReadString();
+
         for (int i = 0; i < inventory_player.Length; i++)
         {
             int value = r.ReadInt32();
@@ -93,18 +95,17 @@ public static class Data
         }
 
         coin = r.ReadInt32();
-        if (r.BaseStream.Position >= r.BaseStream.Length) return;
         
         for (int i = 0; i < level_unlock.Length; i++)
         {
+            if (r.BaseStream.Position >= r.BaseStream.Length) return;
             level_unlock[i] = r.ReadBoolean();
         }
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
+            if (r.BaseStream.Position >= r.BaseStream.Length) return;
             Data_Player.player_list[i] = r.ReadBoolean();
         }
-
-        Language = r.ReadString();
 
         r.Close();
         fs.Close();
