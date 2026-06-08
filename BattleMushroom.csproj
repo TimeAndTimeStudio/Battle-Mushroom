@@ -4,8 +4,8 @@
     <SupportedOSPlatformVersion>28</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
     <ApplicationId>com.timeandtimestudio.battlemushroom</ApplicationId>
-    <ApplicationVersion>4</ApplicationVersion>
-    <ApplicationDisplayVersion>Demo 1.0.3</ApplicationDisplayVersion>
+    <ApplicationVersion>5</ApplicationVersion>
+    <ApplicationDisplayVersion>Demo 1.0.4</ApplicationDisplayVersion>
   </PropertyGroup>
   <!-- <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
