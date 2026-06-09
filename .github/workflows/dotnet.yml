@@ -26,9 +26,7 @@ jobs:
       run: dotnet restore
     - name: Install
       run: dotnet new install MonoGame.Templates.CSharp
-    - name: Install MGCB
-      run: dotnet tool install --global dotnet-mgcb
-    - name: Add .NET tools to PATH
-      run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+    - name: Restore
+      run: dotnet tool restore
     - name: Build
       run: dotnet build
