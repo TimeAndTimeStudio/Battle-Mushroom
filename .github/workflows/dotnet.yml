@@ -24,5 +24,7 @@ jobs:
       run: dotnet workload restore
     - name: Restore dependencies
       run: dotnet restore
+    - name: Install
+      run: dotnet new install MonoGame.Templates.CSharp
     - name: Build
       run: dotnet build
