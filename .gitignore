@@ -4,7 +4,6 @@ Content/bin
 Content/obj
 .vscode/
 .vs/
-BattleMushroom.csproj
 BattleMushroom.csproj.user
 run.bat
 TimeAndTime.jks

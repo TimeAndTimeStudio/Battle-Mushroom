@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-android36.0</TargetFramework>
+    <SupportedOSPlatformVersion>28</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>com.timeandtimestudio.battlemushroom</ApplicationId>
+    <ApplicationVersion>6</ApplicationVersion>
+    <ApplicationDisplayVersion>Demo 1.0.5</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <!-- <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+  </PropertyGroup> -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <!-- <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers> -->
+    <RuntimeIdentifiers>android-arm64;</RuntimeIdentifiers>
+    <!-- <RuntimeIdentifiers>android-arm64;</RuntimeIdentifiers> -->
+    
+  </PropertyGroup>
+  <PropertyGroup>
+  <RootNamespace>BattleMushroom</RootNamespace>
+  <AssemblyName>BattleMushroom</AssemblyName>
+</PropertyGroup>
+  <ItemGroup>
+    <None Include="Content\Font\*">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Content\**\*">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.9.3" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.9.3" />
+    <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Language\TimeAndTime.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TimeAndTime.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Language\TimeAndTime.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TimeAndTime.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
+
+  
