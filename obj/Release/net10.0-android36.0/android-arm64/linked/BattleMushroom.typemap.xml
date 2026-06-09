@@ -1,7 +1,0 @@
-<api type="release" assembly-name="BattleMushroom" mvid="a448796ca98d4178a6966da77e23ce53">
-  <module assembly-name="BattleMushroom" mvid="a448796ca98d4178a6966da77e23ce53" mvid-bytes="bHlIpI2peEGmlm2nfiPOUw==">
-    <types-scratch>
-      <entry key="crc64158d7576b92bf39c/Main" java-name="crc64158d7576b92bf39c/Main" managed-type-name="BattleMushroom.Main" token="33554440" />
-    </types-scratch>
-  </module>
-</api>

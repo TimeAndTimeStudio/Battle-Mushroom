@@ -1,4 +1,0 @@
-drawable\icon;drawable\Icon
-drawable\icon_rb;drawable\icon_rb
-values\strings;values\Strings
-values\themes;values\themes

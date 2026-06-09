@@ -1,5 +1,0 @@
-item;obj\Release\net10.0-android36.0\res\values\themes.xml
-resources;obj\Release\net10.0-android36.0\res\values\strings.xml
-resources;obj\Release\net10.0-android36.0\res\values\themes.xml
-string;obj\Release\net10.0-android36.0\res\values\strings.xml
-style;obj\Release\net10.0-android36.0\res\values\themes.xml
