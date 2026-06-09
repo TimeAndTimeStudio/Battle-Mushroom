@@ -26,5 +26,7 @@ jobs:
       run: dotnet restore
     - name: Install
       run: dotnet new install MonoGame.Templates.CSharp
+    - name: Install MGCB
+      run: dotnet tool install --global dotnet-mgcb
     - name: Build
       run: dotnet build
