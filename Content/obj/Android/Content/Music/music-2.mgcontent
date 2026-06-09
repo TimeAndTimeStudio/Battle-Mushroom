@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/siras/Android/BattleMushroom/Content/Content/Music/music-2.ogg</SourceFile>
+  <SourceTime>2026-06-06T14:55:53.2286774+07:00</SourceTime>
+  <DestFile>C:/Users/siras/Android/BattleMushroom/Content/bin/Android/Content/Music/music-2.xnb</DestFile>
+  <DestTime>2026-06-09T19:31:04.0772703+07:00</DestTime>
+  <Importer>OggImporter</Importer>
+  <ImporterTime>2025-10-20T21:25:32+07:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2025-10-20T21:25:32+07:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/siras/Android/BattleMushroom/Content/bin/Android/Content/Music/music-2.m4a</string>
+  </BuildOutput>
+</PipelineBuildEvent>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BattleMushroom</name>
+    </assembly>
+    <members>
+        <member name="T:BattleMushroom.Language.TimeAndTime">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.ATK">
+            <summary>
+              Looks up a localized string similar to ATK : .
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.CD">
+            <summary>
+              Looks up a localized string similar to CD : .
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.CDBUY">
+            <summary>
+              Looks up a localized string similar to CD BUY : .
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Coin">
+            <summary>
+              Looks up a localized string similar to COIN : .
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Exit">
+            <summary>
+              Looks up a localized string similar to Exit.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Game_Name">
+            <summary>
+              Looks up a localized string similar to Battle Mushroom.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.GameStory">
+            <summary>
+              Looks up a localized string similar to One day, a group of mushrooms was stepped on. Feeling stressed and vengeful,they began invading other plants and species. Because of this,
+               other plants and living creatures had to come together to defend
+               against the mushroom group’s invasion..
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.HP">
+            <summary>
+              Looks up a localized string similar to HP : .
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Inventory">
+            <summary>
+              Looks up a localized string similar to Inventory.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Language">
+            <summary>
+              Looks up a localized string similar to EN.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Play">
+            <summary>
+              Looks up a localized string similar to Play.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Random">
+            <summary>
+              Looks up a localized string similar to Random.
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.SPD">
+            <summary>
+              Looks up a localized string similar to SPD : .
+            </summary>
+        </member>
+        <member name="P:BattleMushroom.Language.TimeAndTime.Story">
+            <summary>
+              Looks up a localized string similar to Story.
+            </summary>
+        </member>
+        <member name="T:BattleMushroom.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+    </members>
+</doc>

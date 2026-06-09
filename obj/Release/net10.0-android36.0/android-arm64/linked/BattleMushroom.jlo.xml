@@ -1,0 +1,15 @@
+<api>
+  <jcw-types>
+    <type name="Main" package="crc64158d7576b92bf39c" application_java_class="android.app.Application" mono_runtime_initialization="mono.MonoPackageManager.LoadApplication (context);" extends_type="crc64493ac3851fab1842.AndroidGameActivity" partial_assembly_qualified_name="BattleMushroom.Main, BattleMushroom">
+      <constructors>
+        <constructor name="Main" method="n_.ctor:()V:" jni_signature="()V" managed_parameters="" retval="void" is_dynamically_registered="True" />
+      </constructors>
+      <methods>
+        <method name="onCreate" method="n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler" jni_signature="(Landroid/os/Bundle;)V" params="android.os.Bundle p0" retval="void" super_call="p0" activate_call="p0" />
+      </methods>
+    </type>
+  </jcw-types>
+  <acw-types partial-assembly-name="BattleMushroom" module-name="BattleMushroom.dll">
+    <type assembly-qualified-name="BattleMushroom.Main, BattleMushroom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="battlemushroom.Main" java-key="crc64158d7576b92bf39c.Main" managed-key="BattleMushroom.Main" partial-assembly-qualified-name="BattleMushroom.Main, BattleMushroom" />
+  </acw-types>
+</api>
