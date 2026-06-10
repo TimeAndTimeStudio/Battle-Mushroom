@@ -205,6 +205,30 @@
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/background.png;Content/Level-Png/background
 
+#begin Content/Level-Png/background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/background.png
+
+#begin Content/Level-Png/biggrass-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/biggrass-1.png
+
 #begin Content/Level-Png/biggrass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -216,6 +240,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/biggrass.png;Content/Level-Png/biggrass
+
+#begin Content/Level-Png/biggrass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/biggrass.png
+
+#begin Content/Level-Png/enemytower-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/enemytower-1.png
 
 #begin Content/Level-Png/enemytower.png
 /importer:TextureImporter
@@ -229,6 +277,30 @@
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/enemytower.png;Content/Level-Png/enemytower
 
+#begin Content/Level-Png/enemytower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/enemytower.png
+
+#begin Content/Level-Png/ground-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/ground-1.png
+
 #begin Content/Level-Png/ground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -240,6 +312,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/ground.png;Content/Level-Png/ground
+
+#begin Content/Level-Png/ground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/ground.png
 
 #begin Content/Level-Png/mountain.png
 /importer:TextureImporter
@@ -253,6 +337,30 @@
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/mountain.png;Content/Level-Png/mountain
 
+#begin Content/Level-Png/mountain.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/mountain.png
+
+#begin Content/Level-Png/playertower-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/playertower-1.png
+
 #begin Content/Level-Png/playertower.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -265,17 +373,47 @@
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/playertower.png;Content/Level-Png/playertower
 
+#begin Content/Level-Png/playertower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/playertower.png
+
 #begin Content/Music/music-1.ogg
 /importer:OggImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Content/Music/music-1.ogg;Content/Music/music-1
 
+#begin Content/Music/music-1.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/music-1.ogg
+
 #begin Content/Music/music-2.ogg
 /importer:OggImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Content/Music/music-2.ogg;Content/Music/music-2
+
+#begin Content/Music/music-2.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/music-2.ogg
+
+#begin Content/Music/music-3.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/music-3.ogg
 
 #begin Content/Png/enemy-1/enemy-1.png
 /importer:TextureImporter

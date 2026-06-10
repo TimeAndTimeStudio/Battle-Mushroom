@@ -129,7 +129,7 @@ public class Level_Game_Main : Scene
         Data_Player.cooldown[3] = 0;
         Data_Player.cooldown[4] = 0;
 
-        music_background = _content.Load<Song>("Content/Music/music-1");
+        music_background = _content.Load<Song>(Data_Level.music_file[level_value - 1]);
         MediaPlayer.Play(music_background);
         MediaPlayer.IsRepeating = true;
 
@@ -148,7 +148,7 @@ public class Level_Game_Main : Scene
             MediaPlayer.Stop();
             Data.coin += Data_Level.coinwin[level_value - 1];
 
-            if (level_value < 10)
+            if (level_value < 12)
             {
                 Data.level_unlock[level_value] = true;
             }
@@ -486,41 +486,41 @@ public class Level_Game_Main : Scene
             Data_Player.player_load[i].Draw(_spriteBatch,graphicsDevice,x);
         }
 
-        // Debug - แสดง hitbox Player (attacker range)
-        for (int i = 0; i < Data_Player.player_load.Length; i++)
-        {
-            if (Data_Player.player_load[i] == null) continue;
-            if (Data_Player.player_load[i].checkload == false) continue;
+        // // Debug - แสดง hitbox Player (attacker range)
+        // for (int i = 0; i < Data_Player.player_load.Length; i++)
+        // {
+        //     if (Data_Player.player_load[i] == null) continue;
+        //     if (Data_Player.player_load[i].checkload == false) continue;
 
-            // Attacker rectangle (มี hit_box_size)
-            // แก้ Player attacker rectangle ✅
-            Rectangle playerAttackBox = new Rectangle(
-                (int)x + (int)Data_Player.player_load[i].pos.X 
-                    + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),
-                (int)Data_Player.player_load[i].pos.Y,
-                (int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] 
-                    + (int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value])),
-                (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value]));
-            _spriteBatch.Draw(color1, playerAttackBox, Color.Red * 0.4f);
-        }
+        //     // Attacker rectangle (มี hit_box_size)
+        //     // แก้ Player attacker rectangle ✅
+        //     Rectangle playerAttackBox = new Rectangle(
+        //         (int)x + (int)Data_Player.player_load[i].pos.X 
+        //             + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),
+        //         (int)Data_Player.player_load[i].pos.Y,
+        //         (int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] 
+        //             + (int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value])),
+        //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value]));
+        //     _spriteBatch.Draw(color1, playerAttackBox, Color.Red * 0.4f);
+        // }
 
-        // Debug - แสดง hitbox Enemy (attacker range)
-        for (int i = 0; i < Data_Enemy.enemy_load.Length; i++)
-        {
-            if (Data_Enemy.enemy_load[i] == null) continue;
-            if (Data_Enemy.enemy_load[i].checkload == false) continue;
+        // // Debug - แสดง hitbox Enemy (attacker range)
+        // for (int i = 0; i < Data_Enemy.enemy_load.Length; i++)
+        // {
+        //     if (Data_Enemy.enemy_load[i] == null) continue;
+        //     if (Data_Enemy.enemy_load[i].checkload == false) continue;
 
-            // Attacker rectangle (มี hit_box_size)
-            Rectangle enemyAttackBox = new Rectangle(
-                (int)x + (int)Data_Enemy.enemy_load[i].pos.X 
-                    + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),
-                (int)Data_Enemy.enemy_load[i].pos.Y,
-                (int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] 
-                    + (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value])),
-                (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value]));
+        //     // Attacker rectangle (มี hit_box_size)
+        //     Rectangle enemyAttackBox = new Rectangle(
+        //         (int)x + (int)Data_Enemy.enemy_load[i].pos.X 
+        //             + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),
+        //         (int)Data_Enemy.enemy_load[i].pos.Y,
+        //         (int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] 
+        //             + (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value])),
+        //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value]));
 
-            _spriteBatch.Draw(color1, enemyAttackBox, Color.Blue * 0.4f);
-        }
+        //     _spriteBatch.Draw(color1, enemyAttackBox, Color.Blue * 0.4f);
+        // }
 
 
 
@@ -549,7 +549,7 @@ public class Level_Game_Main : Scene
         _spriteBatch.Draw(color2,new Rectangle((int)(width) - (int)(height / 6f * 2f) + (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 16f / 2f) - (int)(height / 7f / 2f),(int)height - (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 7f / 2f),(int)(height / 7f),(int)(height / 7f)),new Color(255,255,255));
         if (Data.inventory_player[1] != null)
         {
-            if (Data_Player.cooldown[2] >= Data_Player.player_cooldown[Data.inventory_player[2].Value])
+            if (Data_Player.cooldown[1] >= Data_Player.player_cooldown[Data.inventory_player[1].Value])
             {
                 _spriteBatch.Draw(icon_inventory_load[1],new Vector2((int)(width) - (int)(height / 6f * 2f) + (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 16f / 2f) - (int)(height / 7f / 2f),(int)height - (int)(height / 6f / 2f) - (int)(height / 16f) - (int)(height / 7f / 2f)), null,new Color(255,255,255),0,Vector2.Zero,(height / 7f) / Data_Player.player_size_icon[Data.inventory_player[1].Value],SpriteEffects.None,0);
             } else
