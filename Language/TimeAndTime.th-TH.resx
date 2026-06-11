@@ -150,6 +150,9 @@
   <data name="Language" xml:space="preserve">
     <value>TH</value>
   </data>
+  <data name="LEVEL" xml:space="preserve">
+    <value>LEVEL : </value>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>เล่น</value>
   </data>

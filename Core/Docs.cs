@@ -91,6 +91,7 @@ public class Docs : Scene
             {
                 if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
                 {
+                    if (icon_load[i] != null) continue;
                     icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Player.player_name_file[i]}/player-1-icon");
                 } else
                 {
@@ -103,6 +104,7 @@ public class Docs : Scene
             {
                 if ((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) > -500 && (int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) < 4000)
                 {
+                    if (icon_load[i] != null) continue;
                     icon_load[i] = _content.Load<Texture2D>($"Content/Png/{Data_Enemy.enemy_name_file[i]}/enemy-icon");
                 } else
                 {
@@ -133,6 +135,10 @@ public class Docs : Scene
                     }
                     if (ui_button_e_pos.Contains(t.Position))
                     {
+                        for (int i = 0; i < icon_load.Length; i++)
+                        {
+                            icon_load[i] = null;
+                        }
                         checkui = true;
                         page = "e";
                         player_select = null;
@@ -143,6 +149,10 @@ public class Docs : Scene
                     }
                     if (ui_button_p_pos.Contains(t.Position))
                     {
+                        for (int i = 0; i < icon_load.Length; i++)
+                        {
+                            icon_load[i] = null;
+                        }
                         checkui = true;
                         page = "p";
                         player_select = null;
@@ -263,6 +273,7 @@ public class Docs : Scene
         
             ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.Coin + Data_Player.player_coin[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 16f * 8) + (int)(height / 3f) + (int)(height / 16f / 4f),(int)(height / 2.5f - ((int)(height / 3f / 2f)))),rgb_color1,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
             ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.CDBUY + Data_Player.player_cooldown[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 16f * 8) + (int)(height / 3f) + (int)(height / 16f / 4f),(int)(height / 2.5f - ((int)(height / 3f / 2f))) + (int)(fontheight * (height / 12f / 96f / 1.5f))),rgb_color1,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
+            ThaiTextRenderer.DrawString(_spriteBatch,Data.Tiny5,BattleMushroom.Language.TimeAndTime.LEVEL + Data_Player.level_player[player_select.Value],new Vector2((int)(height / 16f) + (int)(height / 16f * 8) + (int)(height / 3f) + (int)(height / 16f / 4f),(int)(height / 2.5f - ((int)(height / 3f / 2f))) + (int)(fontheight * (height / 12f / 96f / 1.5f) * 2f)),rgb_color1,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
         } else if (page == "p")
         {
             for (int i = 0; i < Data_Player.player_list.Length; i++)

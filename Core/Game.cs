@@ -88,6 +88,7 @@ public class Game : Scene
         }
         
         MediaPlayer.IsRepeating = true;
+        Data.updatedata();
 
         Data.checksceneload = true;
     }
@@ -119,21 +120,25 @@ public class Game : Scene
                     if (ui_button_shop_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Shop());
+                        background = null;
                         break;
                     }
                     if (ui_button_inventory_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Inventory());
+                        background = null;
                         break;
                     }
                     if (ui_button_play_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Level());
+                        background = null;
                         break;
                     }
                     if (ui_button_docs_pos.Contains(t.Position))
                     {
                         Data.sceneloaduser(new Docs());
+                        background = null;
                         break;
                     }
                     if (ui_button_language_pos.Contains(t.Position))

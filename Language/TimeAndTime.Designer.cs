@@ -115,9 +115,10 @@ namespace BattleMushroom.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One day, a group of mushrooms was stepped on. Feeling stressed and vengeful,they began invading other plants and species. Because of this,
-        ///    other plants and living creatures had to come together to defend
-        ///    against the mushroom group’s invasion..
+        ///   Looks up a localized string similar to One day, a group of mushrooms was stepped on. Feeling stressed
+        ///and vengeful,they began invading other plants and species. Because
+        ///of this, other plants and living creatures had to come together to 
+        ///defend against the mushroom group&apos;s invasion..
         /// </summary>
         internal static string GameStory {
             get {
@@ -149,6 +150,15 @@ namespace BattleMushroom.Language {
         internal static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LEVEL : .
+        /// </summary>
+        internal static string LEVEL {
+            get {
+                return ResourceManager.GetString("LEVEL", resourceCulture);
             }
         }
         

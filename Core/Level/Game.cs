@@ -29,6 +29,7 @@ public class Level_Game_Main : Scene
     private float fontheight;
 
     public Rectangle ui_button_close_pos;
+    public Rectangle ui_button_u_pos;
 
     private Texture2D close_icon;
 
@@ -59,6 +60,10 @@ public class Level_Game_Main : Scene
 
     public int level_value;
     public float time_coin;
+    private Texture2D lock_icon;
+    private bool checku;
+    private float time_coin_f = 0.1f;
+    private int u_coin = 0;
 
     public Level_Game_Main(int level)
     {
@@ -103,7 +108,10 @@ public class Level_Game_Main : Scene
         tower_enemy = _content.Load<Texture2D>(Data_Level.tower_enemy[level_value - 1]);
         tower_player = _content.Load<Texture2D>(Data_Level.tower_player[level_value - 1]);
 
+        lock_icon = _content.Load<Texture2D>("Content/Icon/lock_icon");
+
         ui_button_close_pos = new Rectangle((int)(height / 8f) - (int)(height / 16f),(int)height - (int)(height / 8f) - (int)(height / 16f),(int)(height / 8f),(int)(height / 8f));
+        ui_button_u_pos = new Rectangle((int)(width - (int)(height / 16) - ((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) - (Data.Tiny5.MeasureString("  0000").X * (height / 12f / 96f) / 1.5f)) - (int)(height / 8f) - (int)(height / 16f),((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)) / 2 - (int)(height / 8f / 1.5f / 2f),(int)(height / 8f / 1.5f),(int)(height / 8f / 1.5f));
         Data.ui_button_player_1_pos = new Rectangle((int)(width) - (int)(height / 6f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
         Data.ui_button_player_2_pos = new Rectangle((int)(width) - (int)(height / 6f * 2f) - (int)(height / 16f / 2f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
         Data.ui_button_player_3_pos = new Rectangle((int)(width) - (int)(height / 6f * 3f) - (int)(height / 16f / 2f * 2f) - (int)(height / 16f),(int)height - (int)(height / 6f) - (int)(height / 16f),(int)(height / 6f),(int)(height / 6f));
@@ -147,6 +155,14 @@ public class Level_Game_Main : Scene
             Data.sceneloaduser(new CoreMain.Game());
             MediaPlayer.Stop();
             Data.coin += Data_Level.coinwin[level_value - 1];
+            
+            for (int i = 0; i < Data.inventory_player.Length; i++)
+            {
+                if (Data.inventory_player[i] != null)
+                {
+                    Data_Player.level_player[Data.inventory_player[i].Value] += 1;
+                }
+            }
 
             if (level_value < 12)
             {
@@ -163,12 +179,20 @@ public class Level_Game_Main : Scene
             Data_Player.cooldown[i] += (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
-        while (time_coin >= 0.1f)
+        while (time_coin >= time_coin_f - (float)((u_coin + 1) * 0.025 - 0.025))
         {
-            time_coin -= 0.1f;
+            time_coin -= time_coin_f - (float)((u_coin + 1) * 0.025 - 0.025);
             coin_game += 1;
         }
 
+        if (coin_game >= 100 * (1.00f + (float)(u_coin * 1)) && u_coin < 3)
+        {
+            checku = true;
+        } else
+        {
+            checku = false;
+        }
+        Console.WriteLine(time_coin_f - (float)((u_coin + 1) * 0.025 - 0.025));
         if (checkspawn)
         {
             if (Data_Enemy.cooldown >= (float)Data_Enemy.spawnenemy_cooldown[level_value - 1][spawnenemy])
@@ -187,7 +211,6 @@ public class Level_Game_Main : Scene
                 }
             }
         }
-        
 
         for (int i = 0; i < Data_Enemy.enemy_load.Length; i++)
         {
@@ -326,6 +349,15 @@ public class Level_Game_Main : Scene
                         MediaPlayer.Stop();
                         break;
                     }
+                    if (ui_button_u_pos.Contains(t.Position))
+                    {
+                        if (checku && u_coin < 3)
+                        {
+                            checku = false;
+                            coin_game -= (int)(100 * (1.00f + (float)(u_coin * 1)));
+                            u_coin += 1;
+                        }
+                    }
                     if (Data.ui_button_player_1_pos.Contains(t.Position))
                     {
                         if (Data.inventory_player[0] != null)
@@ -450,6 +482,16 @@ public class Level_Game_Main : Scene
         _spriteBatch.Draw(background,new Vector2(0,(int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)),null,new Color(255,255,255),0,Vector2.Zero,MathHelper.Max((height - ((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f))) / 45f,width / 100f),SpriteEffects.None,0);
         ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,BattleMushroom.Language.TimeAndTime.Game_Name,new Vector2((int)(height / 16),-(int)(fontheight * (height / 12f / 96f) / 1.5f / 4.5f) + ((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)) / 2 - (int)(fontheight * (height / 12f / 96f) / 1.5f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
         
+        _spriteBatch.Draw(color2,ui_button_u_pos,new Color(255,255,255));
+
+        if (checku)
+        {
+            ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,"U",new Vector2((int)(ui_button_u_pos.X + ui_button_u_pos.Width / 2 - ThaiTextRenderer.MeasureString(Data.Tiny5,"U").X * (height / 12f / 96f) / 1.5f / 2f),ui_button_u_pos.Y), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
+        } else
+        {
+            ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,"L",new Vector2((int)(ui_button_u_pos.X + ui_button_u_pos.Width / 2 - ThaiTextRenderer.MeasureString(Data.Tiny5,"L").X * (height / 12f / 96f) / 1.5f / 2f),ui_button_u_pos.Y), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
+        }
+
         _spriteBatch.Draw(coin_icon,new Vector2(width - (int)(height / 16) - ((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) - (Data.Tiny5.MeasureString("  0000").X * (height / 12f / 96f) / 1.5f),((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)) / 2 - ((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) / 2), null, new Color(255,255,255),0,Vector2.Zero,(((height / 12f / 96f) / 1.5f * 96f + (height / 8f / 2f / 1.3f)) / 20f),SpriteEffects.None,0);
         ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,coin_game.ToString(),new Vector2(width - (int)(height / 16) - (Data.Tiny5.MeasureString("0000").X * (height / 12f / 96f) / 1.5f),-(int)(fontheight * (height / 12f / 96f) / 1.5f / 4.5f) + ((int)((height / 12f / 96f) / 1.5f * 96f) + (int)(height / 8f / 2f)) / 2 - (int)(fontheight * (height / 12f / 96f) / 1.5f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 1.5f,SpriteEffects.None,0);
 

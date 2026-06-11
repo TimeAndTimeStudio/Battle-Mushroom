@@ -40,6 +40,77 @@ public static class Data
         sceneload = scene;
     }
 
+    public static void savedata()
+    {
+        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));
+
+        FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin"), FileMode.Create);
+        BinaryWriter w  = new BinaryWriter(fs);
+
+        w.Write(Data_Player.hp.Length);
+        for (int i = 0; i < Data_Player.hp.Length; i++)
+        {
+            w.Write(Data_Player.hp[i]);
+        }
+
+        w.Write(Data_Player.attack.Length);
+        for (int i = 0; i < Data_Player.attack.Length; i++)
+        {
+            w.Write(Data_Player.attack[i]);
+        }
+
+        w.Write(Data_Player.level_player.Length);
+        for (int i = 0; i < Data_Player.level_player.Length; i++)
+        {
+            w.Write(Data_Player.level_player[i]);
+        }
+
+        w.Close();
+        fs.Close();
+    }
+
+    public static void updatedata()
+    {
+        for (int i = 0; i < Data_Player.level_player.Length; i++)
+        {
+            Data_Player.hp[i] = Data_Player.hpd[i] + (Data_Player.level_player[i] / 10);
+            Data_Player.attack[i] = Data_Player.attackd[i] + (Data_Player.level_player[i] / 20);
+        }
+       savedata();
+    }
+
+    public static void loaddata()
+    {
+        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));
+        
+        FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin"), FileMode.Open);
+        BinaryReader r  = new BinaryReader(fs);
+
+        int hpload = r.ReadInt32();
+        for (int i = 0; i < hpload; i++)
+        {
+            int value = r.ReadInt32();
+            Data_Player.hp[i] = value;
+        }
+
+        int attackload = r.ReadInt32();
+        for (int i = 0; i < attackload; i++)
+        {
+            int value = r.ReadInt32();
+            Data_Player.attack[i] = value;
+        }
+
+        int levelload = r.ReadInt32();
+        for (int i = 0; i < levelload; i++)
+        {
+            int value = r.ReadInt32();
+            Data_Player.level_player[i] = value;
+        }
+
+        r.Close();
+        fs.Close();
+    }
+
     public static void save()
     {
         Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));

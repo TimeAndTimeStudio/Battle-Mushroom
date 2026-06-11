@@ -42,6 +42,10 @@ public class GameMain : Game
             {
                 Data.load();
             }
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin")))
+            {
+                Data.loaddata();
+            }
         }
 
         CultureInfo.CurrentUICulture = new CultureInfo(Data.Language);
@@ -54,7 +58,7 @@ public class GameMain : Game
         if (!check_run)
         {
             check_run = true;
-            Data.sceneload = new CoreMain.Game();
+            Data.sceneload = new CoreMain.GameLoading();
         }
 
         if (Data.exit) 

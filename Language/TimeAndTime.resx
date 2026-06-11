@@ -160,6 +160,10 @@ defend against the mushroom group's invasion.</value>
     <value>EN</value>
     <comment>ภาษาเกม</comment>
   </data>
+  <data name="LEVEL" xml:space="preserve">
+    <value>LEVEL : </value>
+    <comment>เลเวล</comment>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>Play</value>
     <comment>ปุ่มเล่น</comment>
