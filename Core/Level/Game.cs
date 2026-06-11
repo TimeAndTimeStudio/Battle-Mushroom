@@ -1,6 +1,3 @@
-using System;
-using Android.Media.Audiofx;
-using Android.Print;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -192,7 +189,6 @@ public class Level_Game_Main : Scene
         {
             checku = false;
         }
-        Console.WriteLine(time_coin_f - (float)((u_coin + 1) * 0.025 - 0.025));
         if (checkspawn)
         {
             if (Data_Enemy.cooldown >= (float)Data_Enemy.spawnenemy_cooldown[level_value - 1][spawnenemy])

@@ -40,7 +40,7 @@ public static class Data_Enemy
     };
     public static int?[][] spawnenemy_cooldown = new int?[][]
     {
-        new int?[] {190,1,3,2,4,1},
+        new int?[] {2,1,3,2,4,1},
         new int?[] {2,1,3,2,4,1,3,2,1},
         new int?[] {2,1,3,2,4,1,3,2,1,3,2,3},
         new int?[] {2,1,3,2,4,1,3,2,1,3,2,3,5,3,2},
