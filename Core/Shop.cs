@@ -96,7 +96,7 @@ public class Shop : Scene
                             Data.coin -= 100;
                             int random = random_player();
 
-                            background = _content.Load<Texture2D>("Content/Shop/1/shop-random-4");
+                            background = _content.Load<Texture2D>("Content/Shop/1/shop-random-5");
 
 
                             if (random == 0)
@@ -114,10 +114,11 @@ public class Shop : Scene
                                 background = _content.Load<Texture2D>("Content/Shop/1/shop-random-3");
                                 Data_Player.player_list[Data.shop_random[0][2]] = true;
                             }
-                            // if (random == 3)
-                            // {
-                            //     Data_Player.player_list[Data.shop_random[0][3]] = true;
-                            // }
+                            if (random == 3)
+                            {
+                                background = _content.Load<Texture2D>("Content/Shop/1/shop-random-4");
+                                Data_Player.player_list[Data.shop_random[0][3]] = true;
+                            }
                             // if (random == 4)
                             // {
                             //     Data_Player.player_list[Data.shop_random[0][4]] = true;

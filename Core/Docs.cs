@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,12 +36,10 @@ public class Docs : Scene
     private Texture2D[] icon_load = new Texture2D[MathHelper.Max(Data_Player.player_list.Length,Data_Enemy.enemy_name_file.Length)];
     private Rectangle[] player_list_button_pos =  new Rectangle[MathHelper.Max(Data_Player.player_list.Length,Data_Enemy.enemy_name_file.Length)];
 
-    private bool checkrun = false;
-    private float touchx;
-    private float oldtouchx;
-    private float x;
     private int? player_select;
-    private bool checkui = false;
+    private float x;
+
+    private SystemCore touchsystem;
 
     public override void ContentLoad(ContentManager _content, GraphicsDevice graphicsDevice)
     {
@@ -77,14 +74,14 @@ public class Docs : Scene
 
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
 
-        x = 0;
-        touchx = 0;
-        oldtouchx = 0;
+        touchsystem = new BattleMushroom.TouchSystem();
 
         Data.checksceneload = true;
     }
     public override void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content)
     {
+        touchsystem.Update(gameTime);
+        x = touchsystem.returnvalue();
         if (page == "p")
         {
             for (int i = 0; i < Data_Player.player_list.Length; i++)
@@ -118,19 +115,10 @@ public class Docs : Scene
             switch (t.State)
             {
                 case TouchLocationState.Pressed:
-                    if (player_select == null) 
-                    {
-                        touchx = t.Position.X;
-                        oldtouchx = touchx;
-                    }
                     if (ui_button_m_pos.Contains(t.Position))
                     {
-                        checkui = true;
                         page = "m";
                         player_select = null;
-                        x = 0;
-                        touchx = 0;
-                        oldtouchx = 0;
                         break;
                     }
                     if (ui_button_e_pos.Contains(t.Position))
@@ -139,12 +127,9 @@ public class Docs : Scene
                         {
                             icon_load[i] = null;
                         }
-                        checkui = true;
+                        touchsystem = new BattleMushroom.TouchSystem();
                         page = "e";
                         player_select = null;
-                        x = 0;
-                        touchx = 0;
-                        oldtouchx = 0;
                         break;
                     }
                     if (ui_button_p_pos.Contains(t.Position))
@@ -153,22 +138,17 @@ public class Docs : Scene
                         {
                             icon_load[i] = null;
                         }
-                        checkui = true;
+                        touchsystem = new BattleMushroom.TouchSystem();
                         page = "p";
                         player_select = null;
-                        x = 0;
-                        touchx = 0;
-                        oldtouchx = 0;
                         break;
                     }
                     if (ui_button_close_pos.Contains(t.Position))
                     {
                         if (player_select != null)
                         {
+                            touchsystem = new BattleMushroom.TouchSystem();
                             player_select = null;
-                            x = 0;
-                            touchx = 0;
-                            oldtouchx = 0;
                             break;
                         } 
                         Data.sceneloaduser(new Game());
@@ -180,36 +160,10 @@ public class Docs : Scene
                         if (player_list_button_pos[i].Contains(t.Position))
                         {
                             player_select = i;
-                            checkui = true;
-                            x = 0;
-                            touchx = 0;
-                            oldtouchx = 0;
                             break;
                         }
                     }
                     
-                    break;
-                case TouchLocationState.Moved:
-                    if (!checkrun)
-                    {
-                        checkrun = true;
-                        touchx = t.Position.X;
-                        oldtouchx = touchx;
-                    }
-                    if (player_select == null && !checkui)
-                    {
-                        touchx = t.Position.X;
-                        x += touchx - oldtouchx;
-                        oldtouchx = touchx;
-                    }
-                    break;
-                case TouchLocationState.Released:
-                    if (player_select == null)
-                    {
-                        checkui = false;
-                        touchx = 0;
-                        oldtouchx = 0;
-                    }
                     break;
             }
         }

@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 
 namespace CoreMain;
 
@@ -11,18 +10,9 @@ public class GameLoading : Scene
     private int loading = 0;
     private bool loadingend;
     private float gametime;
-    private Song music_background;
     public override void ContentLoad(ContentManager _content, GraphicsDevice graphicsDevice)
     {
         loadingpng = _content.Load<Texture2D>("Content/Png/loading");
-
-        music_background = _content.Load<Song>("Content/Music/loading");
-        if (MediaPlayer.State != MediaState.Playing)
-        {
-            MediaPlayer.Play(music_background);
-        }
-        
-        MediaPlayer.IsRepeating = false;
 
         Data.checksceneload = true;
     }

@@ -1,9 +1,6 @@
-using System;
-using Android.Media.Audiofx;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace CoreMain;
 
@@ -104,6 +101,10 @@ public class PlayerMain : Player
                         main.towerhp_enemy -= Data_Player.attack[player_value];
                     }
                     
+                    if (Data_Player.attackmode[player_value] == 1)
+                    {
+                        hp_player = 0;
+                    }
                 }
             } 
         } else if (attack_check_cooldown)

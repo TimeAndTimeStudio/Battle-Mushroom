@@ -1,9 +1,6 @@
-using System;
-using Android.Media.Audiofx;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace CoreMain;
 
@@ -28,11 +25,13 @@ public class EnemyMain : Enemy
     public int enemy_value;
     public bool attack_check = false;
     public bool attack_check_cooldown = false;
+    private int level;
 
-    public EnemyMain(int enemy,Vector2 pos_enemy)
+    public EnemyMain(int enemy,Vector2 pos_enemy,int level_game)
     {
         enemy_value = enemy;
         pos = pos_enemy;
+        level = level_game;
     }
 
     public override void ContentLoad(ContentManager _content, GraphicsDevice graphicsDevice)
@@ -50,7 +49,7 @@ public class EnemyMain : Enemy
         }
 
         height = graphicsDevice.Viewport.Height;
-        hp_enemy = Data_Enemy.hp[enemy_value];
+        hp_enemy = Data_Enemy.hp[enemy_value] + ((level - 1) / 10 * 2);
 
         checkload = true;
     }
@@ -98,7 +97,7 @@ public class EnemyMain : Enemy
                     
                     if (attack != null)
                     {
-                        attack.hp_player -= Data_Enemy.attack[enemy_value];
+                        attack.hp_player -= Data_Enemy.attack[enemy_value] + ((level - 1) / 10);
                     } else
                     {
                         main.towerhp -= Data_Enemy.attack[enemy_value];

@@ -24,3 +24,9 @@ public abstract class Player
     public abstract void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content, CoreMain.Level_Game_Main main);
     public abstract void Draw(SpriteBatch _spriteBatch, GraphicsDevice graphicsDevice, float x);
 }
+
+public abstract class SystemCore
+{
+    public abstract void Update(GameTime gameTime);
+    public abstract float returnvalue();
+}

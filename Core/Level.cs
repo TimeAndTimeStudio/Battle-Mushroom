@@ -28,11 +28,8 @@ public class Level : Scene
     private Texture2D close_icon;
     private Texture2D lock_icon;
 
-    private float touchx;
-    private float oldtouchx;
     private float x;
-
-    private bool checkrun = false;
+    private SystemCore touchsystem;
 
     public override void ContentLoad(ContentManager _content, GraphicsDevice graphicsDevice)
     {
@@ -64,15 +61,15 @@ public class Level : Scene
         lock_icon = _content.Load<Texture2D>("Content/Icon/lock_icon");
 
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
-
-        x = 0;
-        touchx = 0;
-        oldtouchx = 0;
+        touchsystem = new BattleMushroom.TouchSystem();
 
         Data.checksceneload = true;
     }
     public override void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content)
     {
+        touchsystem.Update(gameTime);
+        x = touchsystem.returnvalue();
+
         foreach (var t in Data.touch)
         {
             switch (t.State)
@@ -93,27 +90,9 @@ public class Level : Scene
                         Data.sceneloaduser(new Game());
                         break;
                     }
-                    touchx = t.Position.X;
-                    oldtouchx = touchx;
-                    break;
-                case TouchLocationState.Moved:
-                    if (!checkrun)
-                    {
-                        checkrun = true;
-                        touchx = t.Position.X;
-                        oldtouchx = touchx;
-                    }
-                    touchx = t.Position.X;
-                    x += touchx - oldtouchx;
-                    oldtouchx = touchx;
-                    break;
-                case TouchLocationState.Released:
-                    touchx = 0;
-                    oldtouchx = 0;
                     break;
             }
         }
-        
     }
     public override void Draw(SpriteBatch _spriteBatch, GraphicsDevice graphicsDevice)
     {

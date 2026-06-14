@@ -33,12 +33,11 @@ public class Inventory : Scene
 
     private Texture2D[] icon_load = new Texture2D[Data_Player.player_list.Length];
     private Texture2D[] icon_inventory_load = new Texture2D[5];
-    private float touchx;
-    private float oldtouchx;
     private float x;
 
     private int? player_select = null;
-    private bool checkrun = false;
+
+    private SystemCore touchsystem;
 
     public override void ContentLoad(ContentManager _content, GraphicsDevice graphicsDevice)
     {
@@ -92,15 +91,14 @@ public class Inventory : Scene
         coin_icon = _content.Load<Texture2D>("Content/Icon/coin_game_icon");
 
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
-
-        x = 0;
-        touchx = 0;
-        oldtouchx = 0;
+        touchsystem = new BattleMushroom.TouchSystem();
 
         Data.checksceneload = true;
     }
     public override void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content)
     {
+        touchsystem.Update(gameTime);
+        x = touchsystem.returnvalue();
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
             icon_load[i] = null;
@@ -246,23 +244,6 @@ public class Inventory : Scene
                             player_select = i;
                         }
                     }
-                    touchx = t.Position.X;
-                    oldtouchx = touchx;
-                    break;
-                case TouchLocationState.Moved:
-                    if (!checkrun)
-                    {
-                        checkrun = true;
-                        touchx = t.Position.X;
-                        oldtouchx = touchx;
-                    }
-                    touchx = t.Position.X;
-                    x += touchx - oldtouchx;
-                    oldtouchx = touchx;
-                    break;
-                case TouchLocationState.Released:
-                    touchx = 0;
-                    oldtouchx = 0;
                     break;
             }
         }
