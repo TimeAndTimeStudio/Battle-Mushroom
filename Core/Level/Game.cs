@@ -138,12 +138,12 @@ public class Level_Game_Main : Scene
     {
         if (towerhp <= 0)
         {
-            Data.sceneloaduser(new CoreMain.Game());
+            Data.sceneloaduser(new CoreMain.ENDGAME(false,0));
             MediaPlayer.Stop();
         }
         if (towerhp_enemy <= 0)
         {
-            Data.sceneloaduser(new CoreMain.Game());
+            Data.sceneloaduser(new CoreMain.ENDGAME(true,Data_Level.coinwin[level_value - 1]));
             MediaPlayer.Stop();
             Data.coin += Data_Level.coinwin[level_value - 1];
             

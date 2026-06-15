@@ -163,6 +163,15 @@ namespace BattleMushroom.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LEVEL Lock.
+        /// </summary>
+        internal static string LEVEL_LOCK {
+            get {
+                return ResourceManager.GetString("LEVEL_LOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         internal static string Play {

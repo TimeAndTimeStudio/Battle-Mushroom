@@ -100,7 +100,7 @@ public class EnemyMain : Enemy
                         attack.hp_player -= Data_Enemy.attack[enemy_value] + ((level - 1) / 10);
                     } else
                     {
-                        main.towerhp -= Data_Enemy.attack[enemy_value];
+                        main.towerhp -= Data_Enemy.attack[enemy_value] + ((level - 1) / 10);
                     }
                 }
             } 

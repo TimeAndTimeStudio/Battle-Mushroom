@@ -53,7 +53,7 @@ public class TouchSystem : SystemCore
             {
                 case TouchLocationState.Moved:
                     touch_time_click += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (touch_time_click <= 0.5f) break;
+                    if (touch_time_click <= 0.05f) break;
                     if (!checkmove)
                     {
                         checkmove = true;

@@ -153,6 +153,9 @@
   <data name="LEVEL" xml:space="preserve">
     <value>LEVEL : </value>
   </data>
+  <data name="LEVEL_LOCK" xml:space="preserve">
+    <value>LEVEL Lock</value>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>เล่น</value>
   </data>

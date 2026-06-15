@@ -30,7 +30,7 @@ public static class Data
 
     public static int[][] shop_random = new int[][]
     {
-        new int[] {1,2,3,4}
+        new int[] {1,2,3,4,5}
     };
 
     public static void sceneloaduser(CoreMain.Scene scene)

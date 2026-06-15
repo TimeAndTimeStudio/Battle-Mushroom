@@ -164,6 +164,10 @@ defend against the mushroom group's invasion.</value>
     <value>LEVEL : </value>
     <comment>เลเวล</comment>
   </data>
+  <data name="LEVEL_LOCK" xml:space="preserve">
+    <value>LEVEL Lock</value>
+    <comment>เลเวลล็อค</comment>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>Play</value>
     <comment>ปุ่มเล่น</comment>
