@@ -62,7 +62,8 @@ public class Level : Scene
 
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
         touchsystem = new BattleMushroom.TouchSystem();
-
+        Data.updatedata();
+        
         Data.checksceneload = true;
     }
     public override void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content)
@@ -118,13 +119,10 @@ public class Level : Scene
                 _spriteBatch.Draw(lock_icon,new Vector2((int)x + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 3f * i) + (int)(height / 2f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f - ((int)(height / 3.5f / 2f)))), null, new Color(255,255,255),0,Vector2.Zero,(height / 3.5f) / 20f,SpriteEffects.None,0);
                 continue;
             } 
-            if (i + 1 < 10)
-            {
-                ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5, $"{i + 1}",new Vector2((int)x + (int)(height / 3.5f / 2f) - ThaiTextRenderer.MeasureString(Data.Tiny5,$"{i + 1}").X * (height / 12f / 96f) * 2f / 2.5f + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f + (int)(height / 3.5f / 2f) - fontheight * (height / 12f / 96f) * 2f / 1.75f / 2f - ((int)(height / 3.5f / 2f)))-(int)(fontheight * (height / 12f / 96f) * 2f / 4.5f)), new Color(255,255,255), 0, Vector2.Zero,(height / 12f / 96f) * 2f,SpriteEffects.None,0);
-            } else
-            {
-                ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5, $"{i + 1}",new Vector2((int)x + (int)(height / 3.5f / 2f) - ThaiTextRenderer.MeasureString(Data.Tiny5,$"{i + 1}").X * (height / 12f / 96f) * 2f / 2.25f + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f + (int)(height / 3.5f / 2f) - fontheight * (height / 12f / 96f) * 2f / 1.75f / 2f - ((int)(height / 3.5f / 2f)))-(int)(fontheight * (height / 12f / 96f) * 2f / 4.5f)), new Color(255,255,255), 0, Vector2.Zero,(height / 12f / 96f) * 2f,SpriteEffects.None,0);
-            }
+    
+            
+            ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5, $"{i + 1}",new Vector2((int)x + (int)(height / 3.5f / 2f) - ThaiTextRenderer.MeasureString(Data.Tiny5,$"{i + 1}").X * (height / 12f / 96f) * 2f / 2f + (int)(height / 16f) + (int)(height / 16f / 2f * i) + (int)(height / 2f * i) + (int)(height / 3f * i) + (int)(height / 3f / 2f) - (int)(height / 3.5f / 2f),(int)(height / 2.5f + (int)(height / 3.5f / 2f) - fontheight * (height / 12f / 96f) * 2f / 1.75f / 2f - ((int)(height / 3.5f / 2f)))-(int)(fontheight * (height / 12f / 96f) * 2f / 4.5f)), new Color(255,255,255), 0, Vector2.Zero,(height / 12f / 96f) * 2f,SpriteEffects.None,0);
+            
             
         }
 

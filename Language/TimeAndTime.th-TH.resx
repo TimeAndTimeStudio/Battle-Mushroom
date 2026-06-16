@@ -168,4 +168,10 @@
   <data name="Story" xml:space="preserve">
     <value>เนื้อเรื่อง</value>
   </data>
+  <data name="Tower_HP" xml:space="preserve">
+    <value>Tower HP : </value>
+  </data>
+  <data name="Upgrade_Tower" xml:space="preserve">
+    <value>อัพเกรด Tower</value>
+  </data>
 </root>

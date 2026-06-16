@@ -206,5 +206,23 @@ namespace BattleMushroom.Language {
                 return ResourceManager.GetString("Story", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tower HP : .
+        /// </summary>
+        internal static string Tower_HP {
+            get {
+                return ResourceManager.GetString("Tower_HP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade Tower.
+        /// </summary>
+        internal static string Upgrade_Tower {
+            get {
+                return ResourceManager.GetString("Upgrade_Tower", resourceCulture);
+            }
+        }
     }
 }

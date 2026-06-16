@@ -184,4 +184,10 @@ defend against the mushroom group's invasion.</value>
     <value>Story</value>
     <comment>เนื้อเรื่อง</comment>
   </data>
+  <data name="Tower_HP" xml:space="preserve">
+    <value>Tower HP : </value>
+  </data>
+  <data name="Upgrade_Tower" xml:space="preserve">
+    <value>Upgrade Tower</value>
+  </data>
 </root>

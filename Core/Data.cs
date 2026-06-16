@@ -33,6 +33,15 @@ public static class Data
         new int[] {1,2,3,4,5}
     };
 
+    public static int[] hp_tower = new int[] {100,200};
+    public static int hp_tower_check = 0;
+    public static int[] hp_tower_coin = new int[] {1000,5000};
+    public static int[] hp_tower_level = new int[] {9,19};
+
+    public static void updatehptower()
+    {
+        towerhp = hp_tower[hp_tower_check];
+    }
     public static void sceneloaduser(CoreMain.Scene scene)
     {
         sceneload = null;
@@ -141,6 +150,8 @@ public static class Data
             w.Write(Data_Player.player_list[i]);
         }
 
+        w.Write(hp_tower_check);
+
         w.Close();
         fs.Close();
     }
@@ -177,6 +188,9 @@ public static class Data
             if (r.BaseStream.Position >= r.BaseStream.Length) return;
             Data_Player.player_list[i] = r.ReadBoolean();
         }
+
+        if (r.BaseStream.Position >= r.BaseStream.Length) return;
+        hp_tower_check = r.ReadInt32();
 
         r.Close();
         fs.Close();

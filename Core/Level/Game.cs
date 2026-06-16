@@ -67,6 +67,8 @@ public class Level_Game_Main : Scene
 
     public override void ContentLoad(ContentManager _content, GraphicsDevice graphicsDevice)
     {
+        Data.updatehptower();
+
         rgb_color1 = new Color(255,154,134);
         rgb_color2 = new Color(255,179,153);
         rgb_color3 = new Color(255,214,166);
@@ -131,6 +133,14 @@ public class Level_Game_Main : Scene
         MediaPlayer.IsRepeating = true;
 
         touchsystem = new BattleMushroom.TouchSystem(true,-(height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1] - width));
+
+        int lock_level = Data_Level.LEVEL_LOCK[level_value - 1];
+
+        for (int i = 0; i < Data_Player.level_player.Length; i++)
+        {
+            Data_Player.hp[i] = Data_Player.hpd[i] + (MathHelper.Min(Data_Player.level_player[i],lock_level) / 10);
+            Data_Player.attack[i] = Data_Player.attackd[i] + (MathHelper.Min(Data_Player.level_player[i],lock_level) / 20);
+        }
 
         Data.checksceneload = true;
     }
@@ -233,26 +243,34 @@ public class Level_Game_Main : Scene
         
             if (Data_Enemy.enemy_load[i].attack == null)
             {
+                bool check = false;
+
                 for (int e = 0; e < Data_Player.player_load.Length; e++)
                 {
                     if (Data_Player.player_load[e] == null) continue;
                     if (Data_Player.player_load[e].checkload == false) continue;
                     if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)x + (int)Data_Player.player_load[e].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[e].player_value] / Data_Player.player_hit_box[Data_Player.player_load[e].player_value]),(int)Data_Player.player_load[e].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[e].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[e].player_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[e].player_value]))))
                     {
+                        Data_Enemy.enemy_load[i].attack = Data_Player.player_load[e];
                         if (!Data_Enemy.enemy_load[i].attack_check_cooldown)
                         {
-                            Data_Enemy.enemy_load[i].attack = Data_Player.player_load[e];
                             Data_Enemy.enemy_load[i].attack_check = true;
                         }
+                        check = true;
+                        break;
                     } 
                 }
-                if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)(x + height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
+                if (!check)
                 {
-                    if (!Data_Enemy.enemy_load[i].attack_check_cooldown)
+                    if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)(x + height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
                     {
-                        Data_Enemy.enemy_load[i].attack_check = true;
+                        if (!Data_Enemy.enemy_load[i].attack_check_cooldown)
+                        {
+                            Data_Enemy.enemy_load[i].attack_check = true;
+                        }
                     }
                 }
+
             } else
             {
                 if (!new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].attack.pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Enemy.enemy_load[i].attack.player_value] / Data_Player.player_hit_box[Data_Enemy.enemy_load[i].attack.player_value]),(int)Data_Enemy.enemy_load[i].attack.pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Enemy.enemy_load[i].attack.player_value] * 32f / Data_Player.player_hit_box[Data_Enemy.enemy_load[i].attack.player_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Enemy.enemy_load[i].attack.player_value]))))
@@ -299,26 +317,34 @@ public class Level_Game_Main : Scene
       
             if (Data_Player.player_load[i].attack == null)
             {
+                bool check = false;
+
                 for (int e = 0; e < Data_Enemy.enemy_load.Length; e++)
                 {
                     if (Data_Enemy.enemy_load[e] == null) continue;
                     if (Data_Enemy.enemy_load[e].checkload == false) continue;
                     if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)x + (int)Data_Enemy.enemy_load[e].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[e].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[e].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[e].enemy_value]),(int)Data_Enemy.enemy_load[e].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[e].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[e].enemy_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[e].enemy_value]))))
                     {
+                        Data_Player.player_load[i].attack = Data_Enemy.enemy_load[e];
                         if (!Data_Player.player_load[i].attack_check_cooldown)
                         {
-                            Data_Player.player_load[i].attack = Data_Enemy.enemy_load[e];
                             Data_Player.player_load[i].attack_check = true;
                         }
+                        check = true;
+                        break;
                     } 
                 }
-                if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
+                if (!check)
                 {
-                    if (!Data_Player.player_load[i].attack_check_cooldown)
+                    if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
                     {
-                        Data_Player.player_load[i].attack_check = true;
+                        if (!Data_Player.player_load[i].attack_check_cooldown)
+                        {
+                            Data_Player.player_load[i].attack_check = true;
+                        }
                     }
                 }
+                
             } else
             {
                 if (!new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)x + (int)Data_Player.player_load[i].attack.pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Player.player_load[i].attack.enemy_value] / Data_Enemy.enemy_hit_box[Data_Player.player_load[i].attack.enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Player.player_load[i].attack.enemy_value]),(int)Data_Player.player_load[i].attack.pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Player.player_load[i].attack.enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Player.player_load[i].attack.enemy_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Player.player_load[i].attack.enemy_value]))))

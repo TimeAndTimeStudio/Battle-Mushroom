@@ -41,6 +41,7 @@ public class GameMain : Game
             if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "game.bin")))
             {
                 Data.load();
+                Data.updatehptower();
             }
             if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin")))
             {
