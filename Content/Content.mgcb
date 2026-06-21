@@ -205,6 +205,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Level-Png/background.png;Content/Level-Png/background
 
+#begin Content/Level-Png/bamboo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Level-Png/bamboo.png;Content/Level-Png/bamboo
+
 #begin Content/Level-Png/biggrass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -276,6 +288,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Content/Music/music-2.ogg;Content/Music/music-2
+
+#begin Content/Music/music-3.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/music-3.ogg;Content/Music/music-3
 
 #begin Content/Png/enemy-1/enemy-1.png
 /importer:TextureImporter
@@ -1020,6 +1038,150 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Png/enemy-5/enemy-icon.png;Content/Png/enemy-5/enemy-icon
+
+#begin Content/Png/enemy-6/enemy-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-1.png;Content/Png/enemy-6/enemy-1
+
+#begin Content/Png/enemy-6/enemy-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-2.png;Content/Png/enemy-6/enemy-2
+
+#begin Content/Png/enemy-6/enemy-3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-3.png;Content/Png/enemy-6/enemy-3
+
+#begin Content/Png/enemy-6/enemy-4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-4.png;Content/Png/enemy-6/enemy-4
+
+#begin Content/Png/enemy-6/enemy-attack1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack1.png;Content/Png/enemy-6/enemy-attack1
+
+#begin Content/Png/enemy-6/enemy-attack2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack2.png;Content/Png/enemy-6/enemy-attack2
+
+#begin Content/Png/enemy-6/enemy-attack3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack3.png;Content/Png/enemy-6/enemy-attack3
+
+#begin Content/Png/enemy-6/enemy-attack4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack4.png;Content/Png/enemy-6/enemy-attack4
+
+#begin Content/Png/enemy-6/enemy-attack5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack5.png;Content/Png/enemy-6/enemy-attack5
+
+#begin Content/Png/enemy-6/enemy-attack6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack6.png;Content/Png/enemy-6/enemy-attack6
+
+#begin Content/Png/enemy-6/enemy-attack7.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-attack7.png;Content/Png/enemy-6/enemy-attack7
+
+#begin Content/Png/enemy-6/enemy-icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Png/enemy-6/enemy-icon.png;Content/Png/enemy-6/enemy-icon
 
 #begin Content/Png/Loading/1.png
 /importer:TextureImporter

@@ -26,6 +26,7 @@ public class EnemyMain : Enemy
     public bool attack_check = false;
     public bool attack_check_cooldown = false;
     private int level;
+    public bool towercheck;
 
     public EnemyMain(int enemy,Vector2 pos_enemy,int level_game)
     {
@@ -74,7 +75,7 @@ public class EnemyMain : Enemy
                 playtime -= 0.1f;
                 attack_play = 0;
                 attack_cooldown = 0;
-                pos.X -= Data_Enemy.speed[enemy_value] * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                pos.X -= Data_Enemy.speed[enemy_value];
                 walk_play += 1;
                 
 
@@ -94,13 +95,21 @@ public class EnemyMain : Enemy
                 {
                     attack_play = 0;
                     attack_check_cooldown = true;
-                    
                     if (attack != null)
                     {
+                        towercheck = false;
+                    }
+                    if (attack != null)
+                    {
+                        if (Data_Enemy.attackmode[enemy_value] == 1)
+                        {
+                            attack.pos.X -= (int)(height / 50 * 10);
+                        }
                         attack.hp_player -= Data_Enemy.attack[enemy_value] + ((level - 1) / 10);
-                    } else
+                    } else if (towercheck && attack == null)
                     {
                         main.towerhp -= Data_Enemy.attack[enemy_value] + ((level - 1) / 10);
+                        towercheck = false;
                     }
                 }
             } 
@@ -108,6 +117,11 @@ public class EnemyMain : Enemy
         {
             playtime = 0;
             walk_play = 0;
+            attack_play = 0;
+        }
+
+        if (!attack_check)
+        {
             attack_play = 0;
         }
     }

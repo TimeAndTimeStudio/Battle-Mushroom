@@ -120,8 +120,8 @@ public class Level_Game_Main : Scene
         fontheight = Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Game_Name).Y;
 
         Data_Enemy.cooldown = 0;
-        Data_Enemy.enemy_load = new CoreMain.EnemyMain[20];
-        Data_Player.player_load = new CoreMain.PlayerMain[20];
+        Data_Enemy.enemy_load = new CoreMain.EnemyMain[100];
+        Data_Player.player_load = new CoreMain.PlayerMain[100];
         Data_Player.cooldown[0] = 0;
         Data_Player.cooldown[1] = 0;
         Data_Player.cooldown[2] = 0;
@@ -165,7 +165,7 @@ public class Level_Game_Main : Scene
                 }
             }
 
-            if (level_value < 20)
+            if (level_value < 30)
             {
                 Data.level_unlock[level_value] = true;
             }
@@ -252,13 +252,21 @@ public class Level_Game_Main : Scene
                     if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)x + (int)Data_Player.player_load[e].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[e].player_value] / Data_Player.player_hit_box[Data_Player.player_load[e].player_value]),(int)Data_Player.player_load[e].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[e].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[e].player_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[e].player_value]))))
                     {
                         Data_Enemy.enemy_load[i].attack = Data_Player.player_load[e];
-                        if (!Data_Enemy.enemy_load[i].attack_check_cooldown)
-                        {
-                            Data_Enemy.enemy_load[i].attack_check = true;
-                        }
+                        Data_Enemy.enemy_load[i].towercheck = false;
+                        Data_Enemy.enemy_load[i].attack_check = true;
                         check = true;
                         break;
-                    } 
+                    } else if (Data_Enemy.enemy_load[i].towercheck == true)
+                    {
+                        if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X - (int)(height / 50f) + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))) + (int)(height / 50f),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)x + (int)Data_Player.player_load[e].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[e].player_value] / Data_Player.player_hit_box[Data_Player.player_load[e].player_value]),(int)Data_Player.player_load[e].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[e].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[e].player_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[e].player_value]))))
+                        {
+                            Data_Enemy.enemy_load[i].attack = Data_Player.player_load[e];
+                            Data_Enemy.enemy_load[i].towercheck = false;
+                            Data_Enemy.enemy_load[i].attack_check = true;
+                            check = true;
+                            break;
+                        } 
+                    }
                 }
                 if (!check)
                 {
@@ -266,6 +274,7 @@ public class Level_Game_Main : Scene
                     {
                         if (!Data_Enemy.enemy_load[i].attack_check_cooldown)
                         {
+                            Data_Enemy.enemy_load[i].towercheck = true;
                             Data_Enemy.enemy_load[i].attack_check = true;
                         }
                     }
@@ -326,13 +335,21 @@ public class Level_Game_Main : Scene
                     if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)x + (int)Data_Enemy.enemy_load[e].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[e].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[e].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[e].enemy_value]),(int)Data_Enemy.enemy_load[e].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[e].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[e].enemy_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[e].enemy_value]))))
                     {
                         Data_Player.player_load[i].attack = Data_Enemy.enemy_load[e];
-                        if (!Data_Player.player_load[i].attack_check_cooldown)
-                        {
-                            Data_Player.player_load[i].attack_check = true;
-                        }
+                        Data_Player.player_load[i].towercheck = false;
+                        Data_Player.player_load[i].attack_check = true;
                         check = true;
                         break;
-                    } 
+                    } else if (Data_Player.player_load[i].towercheck == true)
+                    {
+                        if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))) + (int)(height / 50f),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)x + (int)Data_Enemy.enemy_load[e].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[e].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[e].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[e].enemy_value]),(int)Data_Enemy.enemy_load[e].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[e].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[e].enemy_value]),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[e].enemy_value]))))
+                        {
+                            Data_Player.player_load[i].attack = Data_Enemy.enemy_load[e];
+                            Data_Player.player_load[i].towercheck = false;
+                            Data_Player.player_load[i].attack_check = true;
+                            check = true;
+                            break;
+                        } 
+                    }
                 }
                 if (!check)
                 {
@@ -340,6 +357,7 @@ public class Level_Game_Main : Scene
                     {
                         if (!Data_Player.player_load[i].attack_check_cooldown)
                         {
+                            Data_Player.player_load[i].towercheck = true;
                             Data_Player.player_load[i].attack_check = true;
                         }
                     }
@@ -503,7 +521,7 @@ public class Level_Game_Main : Scene
         for (int i = 0; i < Data_Level.biggrasspos[level_value - 1].Length; i++)
         {
             if (Data_Level.biggrasspos[level_value - 1][i] == 0) continue;
-            _spriteBatch.Draw(biggrass,new Vector2(x + height / 4f / 16f * 16f * i,(int)(height - (height / 4f / 16f * 16f * 1.95f))),null,new Color(255,255,255),0,Vector2.Zero,height / 4f / 16f,SpriteEffects.None,0);
+            _spriteBatch.Draw(biggrass,new Vector2(x + height / 4f / 16f * 16f * i,(int)(height - (height / 4f / 16f * (16f + Data_Level.biggrass_h[level_value - 1]) * 1.95f))),null,new Color(255,255,255),0,Vector2.Zero,height / 4f / 16f,SpriteEffects.None,0);
         }
 
         _spriteBatch.Draw(tower_player,new Vector2((int)(x + height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f)))),null,new Color(255,255,255),0,Vector2.Zero,height / 2f / 32f,SpriteEffects.None,0);
@@ -538,6 +556,16 @@ public class Level_Game_Main : Scene
         //         (int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] 
         //             + (int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value])),
         //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value]));
+
+        //     Rectangle playerAttackBox1 = new Rectangle(
+        //         (int)x + (int)Data_Player.player_load[i].pos.X 
+        //             + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),
+        //         (int)Data_Player.player_load[i].pos.Y,
+        //         (int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] 
+        //             + (int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value])) + (int)(height / 50f),
+        //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value]));
+
+        //     _spriteBatch.Draw(color1, playerAttackBox1, Color.White * 0.4f);
         //     _spriteBatch.Draw(color1, playerAttackBox, Color.Red * 0.4f);
         // }
 
@@ -556,16 +584,27 @@ public class Level_Game_Main : Scene
         //             + (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value])),
         //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value]));
 
+        //     Rectangle enemyAttackBox1 = new Rectangle(
+        //         (int)x + (int)Data_Enemy.enemy_load[i].pos.X - (int)(height / 50f)
+        //             + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),
+        //         (int)Data_Enemy.enemy_load[i].pos.Y,
+        //         (int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] 
+        //             + (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value])) + (int)(height / 50f),
+        //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value]));
+
         //     _spriteBatch.Draw(color1, enemyAttackBox, Color.Blue * 0.4f);
+        //     _spriteBatch.Draw(color1, enemyAttackBox1, Color.White * 0.4f);
         // }
 
 
 
         _spriteBatch.Draw(color3,new Rectangle((int)x + (int)(height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)),(int)(height / 2f / 32f * 32f),(int)(height / 16f)),new Color(255,255,255));
         _spriteBatch.Draw(color1,new Rectangle((int)x + (int)(height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)),(int)((height / 2f / 32f * 32f) * ((float)towerhp / (float)Data.towerhp)),(int)(height / 16f)),new Color(255,255,255));
+        ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,towerhp.ToString(),new Vector2((int)x + (int)(height / 16f * 1.2f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)) -(int)(fontheight * (height / 12f / 96f) / 2f / 4.5f) + (int)(height / 16f / 2f) - (int)(fontheight * (height / 12f / 96f) / 2f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 2f,SpriteEffects.None,0);
 
         _spriteBatch.Draw(color3,new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)),(int)(height / 2f / 32f * 32f),(int)(height / 16f)),new Color(255,255,255));
         _spriteBatch.Draw(color1,new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)),(int)((height / 2f / 32f * 32f) * ((float)towerhp_enemy / (float)Data_Level.towerhp[level_value - 1] )),(int)(height / 16f)),new Color(255,255,255));
+        ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,towerhp_enemy.ToString(),new Vector2((int)x + (int)(height / 16f * 0.2f) + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f) + height / 16f)) -(int)(fontheight * (height / 12f / 96f) / 2f / 4.5f) + (int)(height / 16f / 2f) - (int)(fontheight * (height / 12f / 96f) / 2f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 2f,SpriteEffects.None,0);
 
         _spriteBatch.Draw(color1,ui_button_close_pos,new Color(255,255,255));
         _spriteBatch.Draw(close_icon,new Vector2(ui_button_close_pos.X,ui_button_close_pos.Y),null,new Color(255,255,255),0,Vector2.Zero,height / 8f / 20f,SpriteEffects.None,0);

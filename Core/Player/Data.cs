@@ -4,7 +4,7 @@ public static class Data_Player
     public static int[] attackd = new int[] {1,1,1,1,1000,2};
     public static int[] hp = new int[] {10,3,2,15,1000,5};
     public static int[] attack = new int[] {1,1,1,1,1000,2};
-    public static int[] speed = new int[] {250,350,300,200,600,550};
+    public static int[] speed = new int[] {8,12,10,7,20,18};
     public static int[] cooldown_attack = new int[] {2,1,3,5,100,2};
     public static int[] level_player = new int[] {0,0,0,0,0,0};
 

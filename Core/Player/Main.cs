@@ -25,6 +25,7 @@ public class PlayerMain : Player
     public bool attack_check = false;
     public bool attack_check_cooldown = false;
     public int hp_player;
+    public bool towercheck;
 
     public PlayerMain(int player,Vector2 pos_player)
     {
@@ -72,7 +73,7 @@ public class PlayerMain : Player
                 playtime -= 0.1f;
                 attack_play = 0;
                 attack_cooldown = 0;
-                pos.X += Data_Player.speed[player_value] * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                pos.X += Data_Player.speed[player_value];
                 walk_play += 1;
                 
 
@@ -92,13 +93,17 @@ public class PlayerMain : Player
                 {
                     attack_play = 0;
                     attack_check_cooldown = true;
-                    
+                    if (attack != null)
+                    {
+                        towercheck = false;
+                    }
                     if (attack != null)
                     {
                         attack.hp_enemy -= Data_Player.attack[player_value];
-                    } else
+                    } else if (towercheck && attack == null)
                     {
                         main.towerhp_enemy -= Data_Player.attack[player_value];
+                        towercheck = false;
                     }
                     
                     if (Data_Player.attackmode[player_value] == 1)
@@ -111,6 +116,11 @@ public class PlayerMain : Player
         {
             playtime = 0;
             walk_play = 0;
+            attack_play = 0;
+        }
+
+        if (!attack_check)
+        {
             attack_play = 0;
         }
     }

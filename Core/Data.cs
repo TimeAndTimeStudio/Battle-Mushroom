@@ -20,8 +20,8 @@ public static class Data
     public static Rectangle ui_button_player_4_pos;
     public static Rectangle ui_button_player_5_pos;
 
-    public static Rectangle[] level_button_pos = new Rectangle[20];
-    public static bool[] level_unlock = new bool[20];
+    public static Rectangle[] level_button_pos = new Rectangle[30];
+    public static bool[] level_unlock = new bool[30];
 
     public static int?[] inventory_player = new int?[] {null,null,null,null,null};
     public static string[] backgroundfilename = new string[] {"Background1","Background2","Background3","Background4","Background5","Background6","Background7","Background8"};
@@ -33,10 +33,10 @@ public static class Data
         new int[] {1,2,3,4,5}
     };
 
-    public static int[] hp_tower = new int[] {100,200};
+    public static int[] hp_tower = new int[] {100,200,300};
     public static int hp_tower_check = 0;
-    public static int[] hp_tower_coin = new int[] {1000,5000};
-    public static int[] hp_tower_level = new int[] {9,19};
+    public static int[] hp_tower_coin = new int[] {1000,5000,10000};
+    public static int[] hp_tower_level = new int[] {9,19,29};
 
     public static void updatehptower()
     {

@@ -83,7 +83,7 @@ public class TouchSystem : SystemCore
                         touch_time = 0;
                     }
                     touchx = t.Position.X;
-                    x += touchx - oldtouchx;
+                    x += (touchx - oldtouchx) * 2f;
                     if (checklevel)
                     {
                         if (x <= levelwidth)
