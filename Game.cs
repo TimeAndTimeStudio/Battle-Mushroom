@@ -32,18 +32,19 @@ public class GameMain : Game
 
     protected override void LoadContent()
     {
+        Console.WriteLine(Android.App.Application.Context.GetExternalFilesDir(null)!.AbsolutePath);
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         Data.Tiny5 = Content.Load<SpriteFont>("Font/Tiny5");
 
-        if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom")))
+        if (Directory.Exists(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data")))
         {
-            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "game.bin")))
+            if (File.Exists(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data", "game.bin")))
             {
                 Data.load();
                 Data.updatehptower();
             }
-            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin")))
+            if (File.Exists(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data", "gamedata.bin")))
             {
                 Data.loaddata();
             }

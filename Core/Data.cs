@@ -51,9 +51,9 @@ public static class Data
 
     public static void savedata()
     {
-        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));
+        Directory.CreateDirectory(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data"));
 
-        FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin"), FileMode.Create);
+        FileStream fs = new FileStream(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data", "gamedata.bin"), FileMode.Create);
         BinaryWriter w  = new BinaryWriter(fs);
 
         w.Write(Data_Player.hp.Length);
@@ -90,9 +90,9 @@ public static class Data
 
     public static void loaddata()
     {
-        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));
+        Directory.CreateDirectory(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data"));
         
-        FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "gamedata.bin"), FileMode.Open);
+        FileStream fs = new FileStream(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data", "gamedata.bin"), FileMode.Open);
         BinaryReader r  = new BinaryReader(fs);
 
         int hpload = r.ReadInt32();
@@ -122,12 +122,14 @@ public static class Data
 
     public static void save()
     {
-        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));
+        Directory.CreateDirectory(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data"));
 
-        FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "game.bin"), FileMode.Create);
+        FileStream fs = new FileStream(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data", "game.bin"), FileMode.Create);
         BinaryWriter w  = new BinaryWriter(fs);
 
         w.Write(Language);
+
+        w.Write(inventory_player.Length);
         
         for (int i = 0; i < inventory_player.Length; i++)
         {
@@ -141,10 +143,13 @@ public static class Data
         }
         w.Write(coin);
 
+        w.Write(level_unlock.Length);
         for (int i = 0; i < level_unlock.Length; i++)
         {
             w.Write(level_unlock[i]);
         }
+
+        w.Write(Data_Player.player_list.Length);
         for (int i = 0; i < Data_Player.player_list.Length; i++)
         {
             w.Write(Data_Player.player_list[i]);
@@ -157,14 +162,15 @@ public static class Data
     }
     public static void load()
     {
-        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom"));
+        Directory.CreateDirectory(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data"));
         
-        FileStream fs = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Battle Mushroom", "game.bin"), FileMode.Open);
+        FileStream fs = new FileStream(Path.Combine(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath, "data", "game.bin"), FileMode.Open);
         BinaryReader r  = new BinaryReader(fs);
         
         Language = r.ReadString();
 
-        for (int i = 0; i < inventory_player.Length; i++)
+        int inventory = r.ReadInt32();
+        for (int i = 0; i < inventory; i++)
         {
             int value = r.ReadInt32();
             if (value == 9999)
@@ -178,12 +184,15 @@ public static class Data
 
         coin = r.ReadInt32();
         
-        for (int i = 0; i < level_unlock.Length; i++)
+        int level = r.ReadInt32();
+        for (int i = 0; i < level; i++)
         {
             if (r.BaseStream.Position >= r.BaseStream.Length) return;
             level_unlock[i] = r.ReadBoolean();
         }
-        for (int i = 0; i < Data_Player.player_list.Length; i++)
+        
+        int player = r.ReadInt32();
+        for (int i = 0; i < player; i++)
         {
             if (r.BaseStream.Position >= r.BaseStream.Length) return;
             Data_Player.player_list[i] = r.ReadBoolean();

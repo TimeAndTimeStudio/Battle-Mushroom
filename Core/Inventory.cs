@@ -244,7 +244,7 @@ public class Inventory : Scene
                             player_select = i;
                         }
                     }
-                    if (new Rectangle(Data.ui_button_player_5_pos.X - (int)(height / 16) - Data.ui_button_player_5_pos.Width - (int)(height / 6),Data.ui_button_player_5_pos.Y + Data.ui_button_player_5_pos.Height / 2,Data.ui_button_player_5_pos.Width + (int)(height / 6),Data.ui_button_player_5_pos.Height / 2).Contains(t.Position) && Data.hp_tower_check < 2 && Data.coin >= Data.hp_tower_coin[Data.hp_tower_check])
+                    if (new Rectangle(Data.ui_button_player_5_pos.X - (int)(height / 16) - Data.ui_button_player_5_pos.Width - (int)(height / 6),Data.ui_button_player_5_pos.Y + Data.ui_button_player_5_pos.Height / 2,Data.ui_button_player_5_pos.Width + (int)(height / 6),Data.ui_button_player_5_pos.Height / 2).Contains(t.Position) && Data.hp_tower_check < Data.hp_tower_level.Length - 1 && Data.coin >= Data.hp_tower_coin[Data.hp_tower_check] && Data.level_unlock[Data.hp_tower_level[Data.hp_tower_check]] == true)
                     {
                         Data.coin -= Data.hp_tower_coin[Data.hp_tower_check];
                         Data.hp_tower_check += 1;
@@ -330,7 +330,7 @@ public class Inventory : Scene
         if (Data.level_unlock[Data.hp_tower_level[Data.hp_tower_check]] == true && Data.hp_tower_check < 2)
         {
             ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,BattleMushroom.Language.TimeAndTime.Upgrade_Tower,new Vector2(Data.ui_button_player_5_pos.X - (int)(height / 16) - Data.ui_button_player_5_pos.Width - (int)(height / 6) + ((Data.ui_button_player_5_pos.Width + (int)(height / 6)) / 2f) - (Data.Tiny5.MeasureString(BattleMushroom.Language.TimeAndTime.Upgrade_Tower).X * (height / 12f / 96f) / 2.5f / 2f),Data.ui_button_player_5_pos.Y + Data.ui_button_player_5_pos.Height / 2 -(int)(fontheight * (height / 12f / 96f) / 2.5f / 4.5f) + ((int)(Data.ui_button_player_5_pos.Height / 2f)) / 2 - (int)(fontheight * (height / 12f / 96f) / 2.5f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 2.5f,SpriteEffects.None,0);
-        } else if (Data.hp_tower_check > 0 && Data.level_unlock[Data.hp_tower_level[Data.hp_tower_check]] == true)
+        } else if (Data.hp_tower_check > Data.hp_tower_level.Length - 1 && Data.level_unlock[Data.hp_tower_level[Data.hp_tower_check]] == true)
         {
             ThaiTextRenderer.DrawString(_spriteBatch, Data.Tiny5,"Lock",new Vector2(Data.ui_button_player_5_pos.X - (int)(height / 16) - Data.ui_button_player_5_pos.Width - (int)(height / 6) + ((Data.ui_button_player_5_pos.Width + (int)(height / 6)) / 2f) - (Data.Tiny5.MeasureString("Lock").X * (height / 12f / 96f) / 2.5f / 2f),Data.ui_button_player_5_pos.Y + Data.ui_button_player_5_pos.Height / 2 -(int)(fontheight * (height / 12f / 96f) / 2.5f / 4.5f) + ((int)(Data.ui_button_player_5_pos.Height / 2f)) / 2 - (int)(fontheight * (height / 12f / 96f) / 2.5f / 1.75f / 2f)), rgb_color4,0,Vector2.Zero,(height / 12f / 96f) / 2.5f,SpriteEffects.None,0);
         } else

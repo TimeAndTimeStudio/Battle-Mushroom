@@ -239,6 +239,7 @@ public class Level_Game_Main : Scene
             {
                 Data_Enemy.enemy_load[i].attack_check = false;
                 Data_Enemy.enemy_load[i].attack = null;
+                Data_Enemy.enemy_load[i].attack_check_cooldown = false;
             }
         
             if (Data_Enemy.enemy_load[i].attack == null)
@@ -270,7 +271,7 @@ public class Level_Game_Main : Scene
                 }
                 if (!check)
                 {
-                    if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)(x + height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
+                    if (new Rectangle((int)x + (int)Data_Enemy.enemy_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value] / 2f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),(int)Data_Enemy.enemy_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] + ((int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value] / 2f))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value])).Intersects(new Rectangle((int)(x + height / 16f),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
                     {
                         if (!Data_Enemy.enemy_load[i].attack_check_cooldown)
                         {
@@ -322,6 +323,7 @@ public class Level_Game_Main : Scene
             {
                 Data_Player.player_load[i].attack_check = false;
                 Data_Player.player_load[i].attack = null;
+                Data_Player.player_load[i].attack_check_cooldown = false;
             }
       
             if (Data_Player.player_load[i].attack == null)
@@ -353,7 +355,7 @@ public class Level_Game_Main : Scene
                 }
                 if (!check)
                 {
-                    if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value]))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
+                    if (new Rectangle((int)x + (int)Data_Player.player_load[i].pos.X + (int)(height / 2.5f / 32f * (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] / Data_Player.player_hit_box[Data_Player.player_load[i].player_value]),(int)Data_Player.player_load[i].pos.Y,(int)(height / 2.5f / (float)Data_Player.player_hit_box_s1[Data_Player.player_load[i].player_value] * 32f / Data_Player.player_hit_box[Data_Player.player_load[i].player_value] + ((int)(height / 2.5f / 32f * 32f * Data_Player.player_hit_box_size[Data_Player.player_load[i].player_value] / 2f))),(int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Player.player_size[Data_Player.player_load[i].player_value])).Intersects(new Rectangle((int)(x + (((height / 4f / 16f * 16f * Data_Level.sizemap[level_value - 1]) - (height / 2f / 32f * 32f)) - height / 16f)),(int)(height - (height / 4f / 16f * 16f + (height / 2f / 32f * 32f / 1.05f))),(int)(height / 2f / 32f * 32f),(int)(height / 2f / 32f * 32f))))
                     {
                         if (!Data_Player.player_load[i].attack_check_cooldown)
                         {
@@ -578,10 +580,10 @@ public class Level_Game_Main : Scene
         //     // Attacker rectangle (มี hit_box_size)
         //     Rectangle enemyAttackBox = new Rectangle(
         //         (int)x + (int)Data_Enemy.enemy_load[i].pos.X 
-        //             + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value]) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),
+        //             + (int)(height / 2.5f / 32f * (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value]) - (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value] / 2f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size_w[Data_Enemy.enemy_load[i].enemy_value]),
         //         (int)Data_Enemy.enemy_load[i].pos.Y,
         //         (int)(height / 2.5f / (float)Data_Enemy.enemy_hit_box_s1[Data_Enemy.enemy_load[i].enemy_value] * 32f / Data_Enemy.enemy_hit_box[Data_Enemy.enemy_load[i].enemy_value] 
-        //             + (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value])),
+        //             + (int)(height / 2.5f / 32f * 32f * Data_Enemy.enemy_hit_box_size[Data_Enemy.enemy_load[i].enemy_value] / 2f)),
         //         (int)(height / 2.5f / 32f * 32f) + (int)(height / 2.5f / 32f * Data_Enemy.enemy_size[Data_Enemy.enemy_load[i].enemy_value]));
 
         //     Rectangle enemyAttackBox1 = new Rectangle(

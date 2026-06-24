@@ -57,6 +57,7 @@ public class EnemyMain : Enemy
     public override void Update(GraphicsDevice graphicsDevice, GameTime gameTime, ContentManager _content,CoreMain.Level_Game_Main main)
     {
         playtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        pos.X -= (height / 75f) * Data_Enemy.speed[enemy_value] * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         if (attack_check_cooldown)
         {
@@ -75,7 +76,6 @@ public class EnemyMain : Enemy
                 playtime -= 0.1f;
                 attack_play = 0;
                 attack_cooldown = 0;
-                pos.X -= Data_Enemy.speed[enemy_value];
                 walk_play += 1;
                 
 

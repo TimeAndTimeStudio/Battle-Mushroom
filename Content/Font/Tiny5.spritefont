@@ -65,6 +65,10 @@ with.
         <Start>&#43;</Start>
         <End>&#43;</End>
       </CharacterRegion>
+      <CharacterRegion>
+        <Start>&#45;</Start>
+        <End>&#45;</End>
+      </CharacterRegion>
     </CharacterRegions>
     <!--
     ResourceFiles control the characters which will be in the font. It does this
